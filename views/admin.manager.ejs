@@ -1,0 +1,99 @@
+<%- include('compoment/adminHeader', {type: 'admin.manager'}) %>
+
+<body style="padding: 20px">
+<blockquote class="layui-elem-quote">管理员管理</blockquote>
+<div class="layui-btn-group demoTable">
+    <button class="layui-btn" data-type="addManager">添加管理员</button>
+</div>
+<table class="layui-hide" id="manager" lay-filter="manager"></table>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-warm layui-btn-sm" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
+</script>
+<script type="text/html" id="status">
+    <!-- 这里的 checked 的状态只是演示 -->
+    <input type="checkbox" name="status" data-json="{{ encodeURIComponent(JSON.stringify(d)) }}" value="{{d.checkadmin}}"
+           lay-skin="switch" lay-text="启用|关闭" lay-filter="status" {{ d.checkadmin == 1 ? 'checked' : '' }}>
+</script>
+<script>
+    layui.use(['table', 'form'], function () {
+        var table = layui.table
+        var form = layui.form
+        //监听工具条
+        table.on('tool(manager)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'del') {
+                layer.confirm('您确定要删除当前用户吗？', function (index) {
+                    try {
+                        let params = { id: data.id }
+                        let url = `/data/deleteAdmin`
+                        $.post(url, params, function (res) {
+                            if (res.code === 200) {
+                                layer.msg(res.message)
+                                layer.close(index)
+                                location.reload()
+                            } else {
+                                layer.msg(res.message)
+                                layer.close(index)
+                            }
+                        }, 'json')
+                    } catch (e) {
+                        layer.msg(e)
+                        layer.close(index)
+                    }
+                });
+            } else if (obj.event === 'edit') {
+                layer.alert('编辑行：<br>' + JSON.stringify(data))
+            }
+        });
+        form.on('switch(status)', function (obj) {
+            var json = JSON.parse(decodeURIComponent($(this).data('json')));
+            json = table.clearCacheKey(json);
+            try {
+                let params = { id: json.id, state: json.checkadmin == '1' ? '0' : '1' }
+                let url = `/data/updateAdminState`
+                $.post(url, params, function (res) {
+                    if (res.code === 200) {
+                        layer.msg(res.message)
+                    } else {
+                        layer.msg(res.message)
+                    }
+                }, 'json')
+            } catch (e) {
+                layer.msg(e)
+            }
+        });
+        table.render({
+            elem: '#manager',
+            url: '/data/getUser',
+            page: true,
+            cellMinWidth: 80,  //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            // page: true,
+            cols: [[
+                { field: 'id', title: 'ID', sort: true, align: 'center', width: '120' },
+                { field: 'username', title: '用户名', align: 'center', width: '390' }, //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                { field: 'nickname', title: '管理组', align: 'center', width: '390' },
+                { field: 'logintime', title: '登录时间', align: 'center', sort: true, width: '290'  },
+                { field: 'checkadmin', title: '状态', align: 'center', templet: '#status', width: '190' },
+                { fixed: 'right', title: '操作', align:'center', toolbar: '#barDemo', width: '293' }
+            ]]
+        });
+        var $ = layui.$, active = {
+            addManager: function(){
+                layer.open({
+                    type: 2,
+                    area: ['500px', '350px'],
+                    fixed: false, //不固定
+                    maxmin: true,
+                    content: '/admin/addManager'
+                });
+            }
+        };
+        JSON.stringify()
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+    })
+</script>
+<% include compoment/adminFooter %>

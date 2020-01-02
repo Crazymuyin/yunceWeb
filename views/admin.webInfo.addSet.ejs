@@ -1,0 +1,59 @@
+<%- include('compoment/adminHeader', {type: 'admin.webInfo.addSet'}) %>
+
+<body>
+    <form class="layui-form form" id="addSetForm">
+        <div class="layui-form-item">
+            <label class="layui-form-label">变量名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="addName" lay-verify="required" lay-reqtext="变量名称不能为空" placeholder="请输入变量名称"
+                    autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">参数说明</label>
+            <div class="layui-input-block">
+                <input type="text" name="addDesc" lay-verify="required" lay-reqtext="参数说明不能为空" placeholder="请输入参数说明"
+                    autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">变量值</label>
+            <div class="layui-input-block">
+                <input type="text" name="addValue" placeholder="请输入变量值" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">变量类型</label>
+            <div class="layui-input-block">
+                <input type="radio" name="type" value="string" title="文本" checked>
+                <input type="radio" name="type" value="number" title="数字">
+                <input type="radio" name="type" value="bool" title="布尔(Y/N)">
+                <input type="radio" name="type" value="bstring" title="多行文本">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn layui-btn-webInfo" lay-submit lay-filter="formDemo">提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary layui-btn-webInfo">重置</button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        layui.use('form', function () {
+            var form = layui.form;
+            var $ = layui.jquery
+
+            //监听提交
+            form.on('submit(formDemo)', function (data) {
+                $.post("/data/addWebConfig", $("#addSetForm").serialize(), function (result) {
+                    if (result.code === 200) {
+                        $('#addSetForm')[0].reset()
+                        layer.msg(result.message)
+                    }
+                }, 'json')
+                return false;
+            });
+        });
+    </script>
+<% include compoment/adminFooter %>

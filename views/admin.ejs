@@ -1,0 +1,37 @@
+<%- include('compoment/adminHeader', {type: 'admin'}) %>
+
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <% include compoment/header %>
+        <% include compoment/leftMenu %>
+        <div class="layui-body">
+            <!-- 内容主体区域 -->
+            <div style="padding: 15px;">
+                <iframe class="layadmin-iframe" id="openWeb" name="openWeb" src="/admin/manager" frameborder="0" width="100%" height="100%"></iframe>
+            </div>
+        </div>
+
+        <div class="layui-footer">
+            <!-- 底部固定区域 -->
+            © 底部固定区域
+        </div>
+    </div>
+    <script>
+        layui.use(['jquery', 'element', 'layer'], function () {
+            var element = layui.element;
+            var $ = layui.jquery;
+            var layer = layui.layer;
+
+            $('#exit').click(function () {
+                $.get('/public/logout', function (result) {
+                    if (result) {
+                        layer.msg('退出成功')
+                        setTimeout(function () {
+                            window.location.href = '/login'
+                        }, 1500)
+                    }
+                })
+            })
+        });
+    </script>
+<% include compoment/adminFooter %>

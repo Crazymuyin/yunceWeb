@@ -1,0 +1,137 @@
+<%- include('compoment/adminHeader', {type: 'admin.columnManage'}) %>
+
+<body class="layui-layout-body" style="padding: 10px">
+<blockquote class="layui-elem-quote">栏目管理</blockquote>
+<!-- <a class="layui-btn layui-btn-primary" onclick="window.location.href='index.html';">刷新</a>
+<a class="layui-btn layui-btn-primary" onclick="add();">新增一行</a>
+<a class="layui-btn layui-btn-primary" onclick="print();">打印缓存对象</a> -->
+<div>
+    <table class="layui-hidden" id="treeTable" lay-filter="treeTable"></table>
+</div>
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" id="getCheckData" lay-event="getCheckData">添加网站栏目</button>
+    </div>
+</script>
+<script type="text/html" id="status">
+    <input type="checkbox" name="status" data-json="{{ encodeURIComponent(JSON.stringify(d)) }}" value="{{d.checkinfo}}"
+           lay-skin="switch" lay-text="显示|隐藏" lay-filter="status" {{ d.checkinfo == 1 ? 'checked' : '' }}>
+</script>
+<script>
+    var editObj = null, ptable = null, treeGrid = null, tableId = 'treeTable', layer = null;
+    layui.config({
+        base: '/admin/design/extend/'
+    }).extend({
+        treeGrid: 'treeGrid'
+    }).use(['jquery', 'treeGrid', 'layer', 'form'], function () {
+        var $ = layui.jquery;
+        var form = layui.form
+        treeGrid = layui.treeGrid;//很重要
+        layer = layui.layer;
+        ptable = treeGrid.render({
+            id: tableId,
+            elem: '#' + tableId,
+            idField: 'id',
+            url: '/data/getColumnManageList',
+            cellMinWidth: 100,
+            treeId: 'id', //树形id字段名称
+            treeUpId: 'parentid', //树形父id字段名称
+            treeShowName: 'classname', //以树形式显示的字段
+            toolbar: '#toolbarDemo',
+            cols: [[
+                { type: 'checkbox' },
+                { field: 'id', width: 60, title: 'ID', align: 'center' },
+                { field: 'classname', width: 200, align: 'left', title: '栏目名称' },
+                { field: 'infotype', width: 100, align: 'center', title: '栏目类型', templet: function (d) {
+                        if (Number(d.infotype) === 0) return '单页'
+                        if (Number(d.infotype) === 1) return '列表'
+                        if (Number(d.infotype) === 2) return '图片'
+                    }
+                },
+                { field: 'linkurl', width: 200, align: 'left', title: '跳转地址' },
+                { field: 'seotitle', width: 200, align: 'center', title: 'SEO标题' },
+                { field: 'keywords', width: 400, align: 'center', title: 'SEO关键词' },
+                { field: 'orderid', title: '排序', align: 'center', width: 80},
+                { field: 'checkinfo', title: '状态', align: 'center', templet: '#status', width: '150' },
+                { title: '操作', align: 'center',
+                    templet: function (d) {
+                        var html = '';
+                        var editBtn = '<a class="layui-btn layui-btn-warm layui-btn-sm" lay-event="update">修改</a>';
+                        var delBtn = '<a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>';
+                        return editBtn + delBtn;
+                    }
+                }
+            ]]
+            , page: false
+        });
+
+        treeGrid.on('tool(' + tableId + ')', function (obj) {
+            if (obj.event === 'del') {//删除行
+                del(obj);
+            } else if (obj.event === "add") {//添加行
+                add(obj.data);
+            } else if (obj.event === 'update') {
+                layer.open({
+                    title: '修改网站栏目',
+                    type: 2,
+                    area: ['50%', '90%'],
+                    fixed: false, //不固定
+                    maxmin: true,
+                    content: `/admin/columnManage/addColumn/${obj.data.id}`
+                })
+            }
+        });
+
+        $('#getCheckData').click(function () {
+            layer.open({
+                title: '添加网站栏目',
+                type: 2,
+                area: ['50%', '90%'],
+                fixed: false, //不固定
+                maxmin: true,
+                content: '/admin/columnManage/addColumn/0'
+            });
+        })
+        form.on('switch(status)', function (obj) {
+            var json = JSON.parse(decodeURIComponent($(this).data('json')));
+            try {
+                let params = { id: json.id, state: json.checkinfo == 1 ? 0 : 1 }
+                let url = `/data/updateColumnState`
+                $.post(url, params, function (res) {
+                    if (res.code === 200) {
+                        layer.msg(res.message)
+                    } else {
+                        layer.msg(res.message)
+                    }
+                }, 'json')
+            } catch (e) {
+                layer.msg(e)
+            }
+        });
+
+        window.del = function(obj) {
+            layer.confirm("你确定删除该栏目吗吗？如果删除，此操作不能撤销！", { icon: 3, title: '提示' },
+                function (index) {//确定回调
+                    try {
+                        let params = { id: obj.data.id, infoType: Number(obj.data.infotype) }
+                        let url = `/data/deleteColumnId`
+                        $.post(url, params, function (res) {
+                            if (res.code === 200) {
+                                layer.msg(res.message)
+                                obj.del();
+                                layer.close(index);
+                            } else {
+                                layer.msg(res.message)
+                            }
+                        }, 'json')
+                    } catch (e) {
+                        layer.msg(e)
+                    }
+                }, function (index) {//取消回调
+                    layer.close(index);
+                }
+            );
+        }
+    });
+</script>
+<% include compoment/adminFooter %>

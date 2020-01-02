@@ -1,0 +1,37 @@
+<%- include('compoment/adminHeader', {type: 'admin.webInfo'}) %>
+
+<body style="padding: 20px" class="webConfig">
+    <blockquote class="layui-elem-quote">网站信息配置</blockquote>
+    <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+        <ul class="layui-tab-title site-demo-title">
+          <li class="layui-this"><a id="set" href="/admin/webInfo/basicSet" target="openSet">基本设置</a></li>
+          <li><a id="add" href="/admin/webInfo/addSet" target="openSet">增加新变量</a></li>
+        </ul>
+    </div>
+    <iframe class="layadmin-iframe-webConfig" id="openSet" name="openSet" src="/admin/webInfo/basicSet" frameborder="0"></iframe>
+
+    <script>
+        layui.use('element', function () {
+            var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+            //监听导航点击
+            element.on('tab(demoTitle)', function (elem) {
+                // var layer = layui.layer
+                // layer.msg(elem.text());
+            });
+            // $ = layui.jquery;
+            // // $(document).ready(function (e) {
+            //     let $tab_li = $('#breadcrumb a');
+            //     console.log(tab_li)
+            //     $tab_li.click(function () {
+            //         $(this).addClass('breadcrumb').siblings().removeClass('breadcrumb');
+            //         let index = $tab_li.index(this);
+            //         alert(index)
+            //         // $('div.tab_box > div').eq(index).show().siblings().hide();
+            //     });
+            // })
+                // $(document).on('click','#set',function(){
+                //     $('set').css('color', '#5FB878')
+                // });
+        });
+    </script>
+<% include compoment/adminFooter %>

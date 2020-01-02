@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- header %>
+    <link rel="stylesheet" href="/home/css/info.css">
+    <%- include('compoment/publicImport', {type: 'index.info'}) %>
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/jsrender.min.js"></script>
+</head>
+
+<body>
+<div class="wrapper">
+    <%- include('compoment/indexHeader', {type: 'index.info'}) %>
+    <div class="banner">
+        <div class="banner-img">
+            <div class="layui-carousel" id="banner" lay-filter="banner">
+                <div carousel-item="">
+                    <% bannerList.forEach(item => { %>
+                    <div>
+                        <a href="<%= item.target %>" target="_blank"><img src="<%= item.advImgs %>" alt="<%= item.advTitle %>"></a>
+                    </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <ul class="flow-default" id="infoList"></ul>
+    </div>
+    <div class="mui-loading">
+        <div class="mui-spinner"></div>
+    </div>
+    <div class="mui-more">
+        <div class="circle"></div>
+        <span>数据正在加载</span>
+    </div>
+    <div class="mui-end">
+        <p style="text-align: center;font-size: 10px;">-- 我是有底线的 --</p>
+    </div>
+    <%- include('compoment/indexFooter', {type: 'index.info'}) %>
+</div>
+
+<!--模板-->
+<script type="text/x-jsrender" id="j-info-item">
+    {{for data}}
+        {{if advImgposition == 1}}
+            <li class="wt">
+                <a href="{{:target}}" target="_blank">
+                    <div class="text-wrapper">
+                        <div class="title">{{:advTitle}}</div>
+                        <div class="content">{{:description}}</div>
+                        <div class="time">{{:advLastUptime}}</div>
+                    </div>
+                </a>
+            </li>
+        {{else advImgposition == 2}}
+            <li class="zwyt">
+                <a href="{{:target}}" target="_blank">
+                    <div class="text-wrapper">
+                        <img src="{{:advImgs}}" alt="">
+                        <div class="text">
+                            <div class="title">{{:advTitle}}</div>
+                            <div class="content">{{:description}}</div>
+                            <div class="time">{{:advLastUptime}}</div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        {{else advImgposition == 3}}
+            <li class="swxt">
+                <a href="{{:target}}" target="_blank">
+                    <div class="text-wrapper">
+                        <div class="title">{{:advTitle}}</div>
+                        <div class="content">{{:description}}</div>
+                        <div class="imgGroup">
+                            {{for advImgArr}}
+                                <img src="{{:picUrl}}" alt="">
+                            {{/for}}
+                        </div>
+                        <div class="time">{{:advLastUptime}}</div>
+                    </div>
+                </a>
+            </li>
+        {{/if}}
+    {{/for}}
+</script>
+<script>
+    var pageAjax = {
+        pageNo: 1,
+        pageSize: 10,
+        loader: $(".mui-loading"),
+        endText : $(".mui-end"),
+        loadMore : $(".mui-more"),
+        promotion_id : $("input[name='promotion_id']").val(),
+        curNavIndex : $(".pro-top .active").data('id'),
+        shiftNav : $(".product-search .pro-top").find("li"),
+        loadMoreState: false,
+        throttle: function (func, delay) {
+            var timer = null;
+            var startTime = Date.now();
+            return function(){
+                var curTime = Date.now();
+                var remaining = delay - (curTime - startTime);
+                var context = this;
+                var args = arguments;
+                clearTimeout(timer);
+                if(remaining <= 0){
+                    func.apply(context,args);
+                    startTime = Date.now();
+                }else{
+                    timer = setTimeout(func,remaining);
+                }
+            }
+        },
+        getDataInit: function () {
+            $.ajax({
+                url: '/web/info/list',
+                type: 'get',
+                data: {
+                    page: pageAjax.pageNo,
+                    size: pageAjax.pageSize
+                },
+                dataType: 'json',
+                timeout: 10000,
+                headers:{'Content-Type':'application/json'},
+                beforeSend: function () {
+                    pageAjax.loader.show()
+                    pageAjax.loader.hide()
+                    pageAjax.loadMore.hide()
+                },
+                success: function (data) {
+                    pageAjax.loader.hide()
+                    if (data.code === 200) {
+                        var list = data.data
+                        if (list.data.length < pageAjax.pageSize) {
+                            pageAjax.loadMoreState = false
+                        } else {
+                            pageAjax.loadMoreState = true
+                        }
+                        var jsRenderTpl = $.templates('#j-info-item')
+                        $("#infoList").append(jsRenderTpl(list));
+                        pageAjax.loadMore.show()
+                    } else {
+                        pageAjax.endText.show()
+                        pageAjax.loader.hide()
+                        pageAjax.loadMore.hide()
+                    }
+                },
+                error: function (data) {
+                    console.log(data)
+                }
+            })
+        },
+        scrollFuc : function(){
+            $(window).scroll(pageAjax.throttle(function(){
+                var scrollTop = $(this).scrollTop();    //滚动条距离顶部的高度
+                var scrollHeight = $(document).height();   //当前页面的总高度
+                var clientHeight = $(this).height();    //当前可视的页面高度
+                var clientWidth = $(this).width();    //当前可视的页面宽度
+                if (clientWidth < 1024) {
+                    if(scrollTop + clientHeight >= scrollHeight - 700){   //距离顶部+当前高度 >=文档总高度 即代表滑动到底部
+                        if($(".mui-end").is(":hidden")){
+                            if (pageAjax.loadMoreState) {
+                                pageAjax.pageNo++;
+                                pageAjax.getDataInit();
+                            } else {
+                                pageAjax.loadMore.hide();
+                            }
+                        }else{
+                            pageAjax.loadMore.hide();
+                        }
+                    }
+                }
+                if(scrollTop + clientHeight >= scrollHeight - 150){   //距离顶部+当前高度 >=文档总高度 即代表滑动到底部
+                    if($(".mui-end").is(":hidden")){
+                        if (pageAjax.loadMoreState) {
+                            pageAjax.pageNo++;
+                            pageAjax.getDataInit();
+                        } else {
+                            pageAjax.loadMore.hide();
+                        }
+                    }else{
+                        pageAjax.loadMore.hide();
+                    }
+                }
+            },2000));
+        }
+    }
+    $(function () {
+        $(".mui-loading,.mui-end").hide();
+        pageAjax.scrollFuc();
+        pageAjax.getDataInit(pageAjax.curNavIndex)
+    })
+</script>
+<script>
+    layui.use(['carousel', 'flow', 'util', 'jquery'], function () {
+        var carousel = layui.carousel
+        var flow = layui.flow
+        var util = layui.util
+        var $ = layui.jquery
+
+        // 常规轮播
+        carousel.render({
+            elem: '#banner',
+            arrow: 'always'
+        });
+        //执行
+        util.fixbar();
+
+        $('#public_number').hover(function() {
+            $('.public-code').css('display', 'block')
+        }, function() {
+            $('.public-code').hide()
+        })
+    })
+</script>
+
+</body>
+
+</html>

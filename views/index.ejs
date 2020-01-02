@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- header %>
+    <link rel="stylesheet" href="/home/css/home.css">
+    <%- include('compoment/publicImport', {type: 'index'}) %>
+</head>
+
+<body>
+<img class="bk" src="/home/imgs/home/bk_1.png" alt="云测,测声誉,测风险,测舆情,中正舆情,网络舆情,舆情监测,舆情管理，个人，危机公关，舆情风险，风险管理，危机应对，网信健康，网信安全">
+<div class="wrapper">
+    <%- include('compoment/indexHeader', {type: 'index'}) %>
+    <div class="banner">
+        <div class="banner-container">
+            <div class="left">
+                <span class="yunce-title">您的网信安全保障秘器</span>
+                <span>提供风险预警、风险监测、风险应对等一站式服务</span>
+                <ul class="yunce-func">
+                    <li>
+                        <img src="/home/imgs/home/checked.png" alt="云测,测声誉,测风险,测舆情,中正舆情,网络舆情,舆情监测,舆情管理，个人，危机公关，舆情风险，风险管理，危机应对，网信健康，网信安全">
+                        <span>测声誉</span>
+                    </li>
+                    <li>
+                        <img src="/home/imgs/home/checked.png" alt="云测,测声誉,测风险,测舆情,中正舆情,网络舆情,舆情监测,舆情管理，个人，危机公关，舆情风险，风险管理，危机应对，网信健康，网信安全">
+                        <span>测风险</span>
+                    </li>
+                    <li>
+                        <img src="/home/imgs/home/checked.png" alt="云测,测声誉,测风险,测舆情,中正舆情,网络舆情,舆情监测,舆情管理，个人，危机公关，舆情风险，风险管理，危机应对，网信健康，网信安全">
+                        <span>测舆情</span>
+                    </li>
+                </ul>
+                <div class="down">
+                    <span>快速体验，只需一步</span>
+                    <img src="/home/imgs/home/down.png" alt="云测,测声誉,测风险,测舆情,中正舆情,网络舆情,舆情监测,舆情管理，个人，危机公关，舆情风险，风险管理，危机应对，网信健康，网信安全">
+                </div>
+                <ul class="code">
+                    <li>
+                        <img src="/home/imgs/home/download_Code.png" alt="云测,测声誉,测风险,测舆情,中正舆情,网络舆情,舆情监测,舆情管理，个人，危机公关，舆情风险，风险管理，危机应对，网信健康，网信安全">
+                        <span>Android</span>
+                    </li>
+                    <li>
+                        <img src="/home/imgs/home/small_Program.png" alt="云测,测声誉,测风险,测舆情,中正舆情,网络舆情,舆情监测,舆情管理，个人，危机公关，舆情风险，风险管理，危机应对，网信健康，网信安全">
+                        <span>微信小程序</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="right">
+                <img src="/home/imgs/home/phone.png" alt="云测,测声誉,测风险,测舆情,中正舆情,网络舆情,舆情监测,舆情管理，个人，危机公关，舆情风险，风险管理，危机应对，网信健康，网信安全">
+                <div class="iframe">
+                    <video src="<%= videoSrc.picurl %>" controls="controls" autoplay="autoplay" muted loop>
+                    </video>
+                </div>
+            </div>
+            <img class="mouse" src="/home/imgs/home/mouse.png" alt="云测,测声誉,测风险,测舆情,中正舆情,网络舆情,舆情监测,舆情管理，个人，危机公关，舆情风险，风险管理，危机应对，网信健康，网信安全">
+        </div>
+    </div>
+    <div class="proIntro">
+        <div class="intro-content">
+            <div class="title">
+                <span><%= product.classname %></span>
+                <span>/</span>
+                <span><%= product.description %></span>
+            </div>
+            <div class="content">
+                <%- product.content %>
+            </div>
+            <img src="<%= product.picurl %>" alt="<%= product.keywords %>">
+        </div>
+    </div>
+    <div class="problem">
+        <div class="pro-content">
+            <div class="title">
+                <span><%= solve.classname %></span>
+                <span>/</span>
+                <span><%= solve.description %></span>
+            </div>
+            <img src="<%= solve.picurl %>" alt="<%= solve.keywords %>">
+        </div>
+    </div>
+    <div class="application">
+        <div class="shadow"></div>
+        <div class="app-content">
+            <div class="title">
+                <span><%= application.className.classname ? application.className.classname : '应用场景' %></span>
+                <span>/</span>
+                <span><%= application.className.description ? application.className.description : 'Application scenario' %></span>
+            </div>
+            <ul class="appli-row-one">
+                <% application.app.forEach((item, index) => { if (index < 4) { %>
+                <li>
+                    <div>
+                        <img src="<%= item.picurl %>" alt="<%= item.keywords %>">
+                    </div>
+                    <p><%= item.title %></p>
+                </li>
+                <% }}) %>
+            </ul>
+            <ul class="appli-row-two">
+                <% application.app.forEach((item, index) => { if (index > 3 && index < 10) { %>
+                <li>
+                    <div>
+                        <img src="<%= item.picurl %>" alt="<%= item.keywords %>">
+                    </div>
+                    <p><%= item.title %></p>
+                </li>
+                <% }}) %>
+            </ul>
+        </div>
+    </div>
+    <div class="function">
+        <div class="func-content">
+            <div class="title">
+                <span><%= service.className.classname ? service.className.classname : '功能服务' %></span>
+                <span>/</span>
+                <span><%= service.className.description ? service.className.description : 'Functional service' %></span>
+            </div>
+            <ul class="func-group-one">
+                <% service.app.forEach((item, index) => { if (index < 3) { %>
+                <li>
+                    <img src="<%= item.picurl %>" alt="<%= item.keywords %>">
+                    <span><%= item.title %></span>
+                    <p><%= item.description %></p>
+                </li>
+                <% }}) %>
+            </ul>
+            <ul class="func-group-two">
+                <% service.app.forEach((item, index) => { if (index > 2 && index < 8) { %>
+                <li>
+                    <img src="<%= item.picurl %>" alt="<%= item.keywords %>">
+                    <span><%= item.title %></span>
+                    <p><%= item.description %></p>
+                </li>
+                <% }}) %>
+            </ul>
+        </div>
+    </div>
+    <div class="coreTech">
+        <div class="core-content">
+            <div class="title">
+                <span><%= core.className.classname ? core.className.classname : '核心技术' %></span>
+                <span>/</span>
+                <span><%= core.className.description ? core.className.description : 'Core Technology' %></span>
+            </div>
+        </div>
+    </div>
+    <div class="imgGroup" id="imgGroup">
+        <ul>
+            <% core.app.forEach((item, index) => { %>
+            <li id="<%= index === 0 ? 'circleOne' : index === 1 ? 'circleTwo' : index === 2 ? 'circleThree' : 'circleFour'%>">
+                <img src="<%= `/home/imgs/home/sience${index+1}.png` %>" alt="<%= item.keywords %>">
+                <div class="font">
+                    <p><%= item.title %></p>
+                    <p><%- item.description %></p>
+                </div>
+                <div class="hoverBk"></div>
+                <div class="<%= index === 0 ? 'one-four-circle' : index === 1 ? 'one-four-circle_two' : index === 2 ? 'one-four-circle_three' : 'one-four-circle_four'%> circle" id="<%= `circle${index + 1}` %>"></div>
+            </li>
+            <% }) %>
+        </ul>
+    </div>
+    <%- include('compoment/indexFooter', {type: 'index'}) %>
+</div>
+
+<script type="text/javascript">
+    layui.use('jquery', function () {
+        var $ = layui.jquery;
+
+        $('#public_number').hover(function() {
+            $('.public-code').css('display', 'block')
+        }, function() {
+            $('.public-code').hide()
+        })
+
+        $('#imgGroup').hover(function() {
+            $('.circle').css('display', 'block')
+        }, function() {
+            $('.circle').hide()
+        })
+        $('#circleOne').hover(function() {
+            $('#circle1').css('background', 'none')
+            $('#circle2').css('background', '#2CBFEF')
+            $('#circle3').css('background', '#071F26')
+            $('#circle4').css('background', '#165F78')
+        })
+        $('#circleTwo').hover(function() {
+            $('#circle1').css('background', '#071F26')
+            $('#circle2').css('background', 'none')
+            $('#circle3').css('background', '#165F78')
+            $('#circle4').css('background', '#2CBFEF')
+        })
+        $('#circleThree').hover(function() {
+            $('#circle1').css('background', '#2CBFEF')
+            $('#circle2').css('background', '#165F78')
+            $('#circle3').css('background', 'none')
+            $('#circle4').css('background', '#071F26')
+        })
+        $('#circleFour').hover(function() {
+            $('#circle1').css('background', '#165F78')
+            $('#circle2').css('background', '#071F26')
+            $('#circle3').css('background', '#2CBFEF')
+            $('#circle4').css('background', 'none')
+        })
+    })
+</script>
+</body>
+</html>

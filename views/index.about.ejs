@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- header %>
+    <link rel="stylesheet" href="/home/css/about.css">
+    <%- include('compoment/publicImport', {type: 'index.about'}) %>
+    <script src="/home/js/jquery-2.1.1.min.js"></script>
+    <script src="/home/js/function.js"></script>
+</head>
+
+<body>
+<div class="wrapper">
+    <%- include('compoment/indexHeader', {type: 'index.about'}) %>
+    <div class="banner">
+        <img src="<%= banner.picurl %>" alt="<%= banner.keywords %>">
+    </div>
+    <div class="container">
+        <div class="companyIntro">
+            <div class="company-wrapper">
+                <div class="text">
+                    <div class="title">
+                        <span><%= aboutInfo.classname %></span>
+                        <span>/</span>
+                        <span><%= aboutInfo.description %></span>
+                    </div>
+                    <div class="content">
+                        <%- aboutInfo.content %>
+                    </div>
+                </div>
+                <img src="<%= aboutInfo.picurl %>" alt="<%= aboutInfo.keywords %>">
+            </div>
+        </div>
+        <div class="concept">
+            <div class="concept-wrapper">
+                <div class="title">
+                    <span><%= concept.title.classname %></span>
+                    <span>/</span>
+                    <span><%= concept.title.description %></span>
+                </div>
+                <ul class="content">
+                    <% concept.list.forEach((item) => { %>
+                        <li>
+                            <img src="<%= item.picurl %>" alt="<%= item.keywords %>">
+                            <div class="desc">
+                                <span><%= item.title %></span>
+                                <span><%= item.description %></span>
+                            </div>
+                        </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </div>
+        <div class="honer">
+            <div class="honer-wrapper">
+                <div class="title">
+                    <span><%= honer.title.classname %></span>
+                    <span>/</span>
+                    <span><%= honer.title.description %></span>
+                </div>
+                <div class="container">
+                    <div class="left">
+                        <img src="<%= honer.list[0].picurl %>" alt="<%= honer.list[0].keywords %>">
+                        <div class="content">
+                            <%- honer.list[0].content %>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <img src="<%= honer.list[1].picurl %>" alt="<%= honer.list[1].keywords %>">
+                        <div><span><%= honer.list[1].description %></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('compoment/indexFooter', {type: 'index.about'}) %>
+</div>
+</body>
+</html>

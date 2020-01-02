@@ -1,0 +1,682 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 62.5% !important;
+}
+::-webkit-scrollbar
+{
+  width: 10px;
+  height: 10px;
+  background-color: #F5F5F5;
+}
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track
+{
+  border-radius: 5px;
+  background-color: #F5F5F5;
+}
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  background-color: #bdbdbd;
+}
+/*滑块效果*/
+::-webkit-scrollbar-thumb:hover
+{
+  border-radius: 10px;
+  background: rgba(0,0,0,0.4);
+}
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
+.wrapper .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: #fff;
+  z-index: 1000;
+  background-color: #333;
+}
+.wrapper .header .header-content {
+  position: relative;
+  margin: 0 auto;
+  height: 100%;
+  line-height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.wrapper .header .header-content .logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.wrapper .header .header-content .logo .logoText {
+  display: flex;
+  flex-direction: column;
+}
+.wrapper .header .header-content .nav {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.wrapper .header .header-content .nav li a {
+  color: #fff;
+  text-decoration: none;
+}
+.wrapper .header .header-content .nav li a:hover {
+  color: #fff;
+}
+.wrapper .header .header-content .nav li a:active {
+  color: #fff;
+}
+.wrapper .banner {
+  width: 100%;
+}
+.wrapper .banner img {
+  width: 100%;
+}
+.wrapper .container {
+  margin: 0 auto;
+}
+.wrapper .container .title {
+  text-align: center;
+  color: #333;
+  font-weight: 400;
+}
+.wrapper .container .time {
+  text-align: center;
+  color: #666;
+  border-bottom: 1px solid #999;
+}
+.wrapper .container .content {
+  text-indent: 2em;
+  color: #333;
+  text-align: justify;
+}
+.wrapper .container .footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.wrapper .container .footer .left {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+.wrapper .container .footer .left div span {
+  color: #333;
+}
+.wrapper .container .footer .left div a {
+  color: #666;
+  cursor: pointer;
+}
+.wrapper .container .footer .right button {
+  background-color: #666;
+  color: #fff;
+  outline: none;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+}
+.wrapper .contact {
+  position: relative;
+  width: 100%;
+  background: url(/home/imgs/home/group2.png);
+}
+.wrapper .contact .contact-content {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.wrapper .contact .contact-content .title {
+  position: absolute;
+  border-left: 5px solid #2CBFEF;
+  color: #fff;
+}
+.wrapper .contact .contact-content .title span:first-child {
+  font-family: 'MicrosoftYaHei';
+}
+.wrapper .contact .contact-content .title span:nth-child(2) {
+  font-family: 'TimesNewRomanPSMT';
+}
+.wrapper .contact .contact-content .title span:last-child {
+  font-family: 'TimesNewRomanPSMT';
+}
+.wrapper .contact .contact-content .connection {
+  position: absolute;
+  color: #fff;
+}
+.wrapper .contact .contact-content .connection .tel span:nth-child(2),
+.wrapper .contact .contact-content .connection .tel span:last-child {
+  color: #2CBFEF;
+}
+.wrapper .contact .contact-content .connection .email span:last-child {
+  color: #2CBFEF;
+}
+.wrapper .contact .contact-content .connection .address_big {
+  display: block;
+}
+.wrapper .contact .contact-content .connection .address {
+  display: block;
+}
+.wrapper .contact .contact-content .publicNumber {
+  width: 235px;
+  height: 200px;
+  position: absolute;
+}
+.wrapper .contact .contact-content .publicNumber .public-code {
+  position: absolute;
+  display: none;
+}
+.wrapper .contact .contact-content .publicNumber ul {
+  width: 100%;
+  height: 100px;
+  list-style-type: none;
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 0;
+  margin: 0;
+}
+.wrapper .contact .contact-content .publicNumber ul li {
+  width: 50%;
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+}
+.wrapper .contact .contact-content .publicNumber ul li img {
+  width: 49px;
+  height: 49px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+.wrapper .contact .contact-content .publicNumber ul li span {
+  color: #fff;
+}
+.wrapper .contact .contact-content .publicNumber p {
+  font-size: 16px;
+  color: #fff;
+}
+.wrapper .contact .contact-content .line {
+  height: 1px;
+  border-top: 1px solid #666;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.wrapper .contact .contact-content .case {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #fff;
+}
+/*<1024的设备*/
+@media (max-width: 1023px) {
+  body {
+    font-size: 18px;
+    min-width: 1024px;
+    overflow-x: auto;
+  }
+  .header {
+    height: 64px;
+  }
+  .header .header-content {
+    width: 100%;
+  }
+  .header .header-content img {
+    width: 49px;
+    height: 43px;
+    margin-top: 10px;
+    margin-left: 24px;
+  }
+  .header .header-content .logoText {
+    margin-top: 18px;
+    margin-left: 10px;
+    font-size: 17px;
+  }
+  .header .header-content .logoText span:last-child {
+    margin-top: 10px;
+    font-size: 12px;
+  }
+  .header .header-content .nav {
+    font-size: 17px;
+  }
+  .header .header-content .nav li {
+    margin-right: 25px;
+    height: 61px;
+    line-height: 64px;
+  }
+  .header .header-content .nav li:nth-child(2) {
+    border-bottom: 3px solid #2297E1;
+  }
+  .header .header-content .nav li:last-child {
+    margin-right: 18px;
+  }
+  .banner {
+    margin-top: 64px;
+  }
+  .container {
+    width: 96%;
+    padding: 0 2%;
+  }
+  .container .title {
+    font-size: 2.4vmin;
+    margin-top: 7.9vmin;
+  }
+  .container .time {
+    font-size: 1.6vmin;
+    margin-top: 1.9vmin;
+    padding-bottom: 5.2vmin;
+  }
+  .container .content {
+    margin-top: 5.2vmin;
+    font-size: 2vmin;
+    line-height: 3.2vmin;
+  }
+  .container .footer {
+    height: 6.8vmin;
+    margin-top: 14vmin;
+    margin-bottom: 13.5vmin;
+    font-size: 2vmin;
+    line-height: 6.8vmin;
+  }
+  .container .footer .left div {
+    line-height: 3.4vmin;
+  }
+  .container .footer .right {
+    line-height: 6.8vmin;
+  }
+  .container .footer .right button {
+    width: 15vmin;
+    height: 6vmin;
+    line-height: 6vmin;
+  }
+  .contact {
+    height: 340px;
+  }
+  .contact .contact-content {
+    width: 100%;
+  }
+  .contact .contact-content .title {
+    top: 60px;
+    left: 20px;
+    height: 28px;
+    line-height: 28px;
+  }
+  .contact .contact-content .title span:first-child {
+    font-size: 26px;
+    margin-left: 6px;
+  }
+  .contact .contact-content .title span:nth-child(2) {
+    font-size: 24px;
+  }
+  .contact .contact-content .title span:last-child {
+    font-size: 16px;
+  }
+  .contact .contact-content .connection {
+    top: 123px;
+    left: 20px;
+    width: 500px;
+    font-size: 14px;
+  }
+  .contact .contact-content .connection .tel {
+    margin-bottom: 14px;
+  }
+  .contact .contact-content .connection .email {
+    margin-bottom: 14px;
+  }
+  .contact .contact-content .connection .address_big {
+    margin-bottom: 14px;
+  }
+  .contact .contact-content .connection .address .company {
+    display: inline-block;
+    width: 56px;
+    text-align: justify;
+    text-align-last: justify;
+  }
+  .contact .contact-content .publicNumber {
+    width: 235px;
+    height: 200px;
+    right: 100px;
+    top: 87px;
+  }
+  .contact .contact-content .publicNumber .public-code {
+    top: -160px;
+    left: -18px;
+    width: 150px;
+  }
+  .contact .contact-content .publicNumber ul {
+    height: 100px;
+  }
+  .contact .contact-content .publicNumber ul li {
+    width: 50%;
+  }
+  .contact .contact-content .publicNumber ul li img {
+    width: 49px;
+    height: 49px;
+  }
+  .contact .contact-content .publicNumber ul li span {
+    font-size: 14px;
+    margin-top: 16px;
+  }
+  .contact .contact-content .publicNumber p {
+    font-size: 14px;
+  }
+  .contact .contact-content .line {
+    width: 95%;
+    height: 1px;
+    top: 289px;
+  }
+  .contact .contact-content .case {
+    top: 309px;
+    font-size: 12px;
+  }
+}
+/*>=1024的设备*/
+@media (min-width: 1024px) {
+  body {
+    font-size: 18px;
+  }
+  .header {
+    height: 64px;
+  }
+  .header .header-content {
+    width: 100%;
+  }
+  .header .header-content img {
+    width: 49px;
+    height: 43px;
+    margin-top: 10px;
+    margin-left: 24px;
+  }
+  .header .header-content .logoText {
+    margin-top: 18px;
+    margin-left: 10px;
+    font-size: 17px;
+  }
+  .header .header-content .logoText span:last-child {
+    margin-top: 10px;
+    font-size: 12px;
+  }
+  .header .header-content .nav {
+    font-size: 17px;
+  }
+  .header .header-content .nav li {
+    margin-right: 25px;
+    height: 61px;
+    line-height: 64px;
+  }
+  .header .header-content .nav li:nth-child(2) {
+    border-bottom: 3px solid #2297E1;
+  }
+  .header .header-content .nav li:last-child {
+    margin-right: 18px;
+  }
+  .banner {
+    margin-top: 63px;
+  }
+  .container {
+    width: 96%;
+    padding: 0 2%;
+  }
+  .container .title {
+    font-size: 2.4vmin;
+    margin-top: 7.9vmin;
+  }
+  .container .time {
+    font-size: 1.6vmin;
+    margin-top: 1.9vmin;
+    padding-bottom: 5.2vmin;
+  }
+  .container .content {
+    margin-top: 5.2vmin;
+    font-size: 2vmin;
+    line-height: 3.2vmin;
+  }
+  .container .footer {
+    height: 6.8vmin;
+    margin-top: 14vmin;
+    margin-bottom: 13.5vmin;
+    font-size: 2vmin;
+    line-height: 6.8vmin;
+  }
+  .container .footer .left div {
+    line-height: 3.4vmin;
+  }
+  .container .footer .right {
+    line-height: 6.8vmin;
+  }
+  .container .footer .right button {
+    width: 15vmin;
+    height: 6vmin;
+    line-height: 6vmin;
+  }
+  .contact {
+    height: 340px;
+  }
+  .contact .contact-content {
+    width: 100%;
+  }
+  .contact .contact-content .title {
+    top: 60px;
+    left: 20px;
+    height: 28px;
+    line-height: 28px;
+  }
+  .contact .contact-content .title span:first-child {
+    font-size: 26px;
+    margin-left: 6px;
+  }
+  .contact .contact-content .title span:nth-child(2) {
+    font-size: 24px;
+  }
+  .contact .contact-content .title span:last-child {
+    font-size: 16px;
+  }
+  .contact .contact-content .connection {
+    top: 123px;
+    left: 20px;
+    width: 500px;
+    font-size: 14px;
+  }
+  .contact .contact-content .connection .tel {
+    margin-bottom: 14px;
+  }
+  .contact .contact-content .connection .email {
+    margin-bottom: 14px;
+  }
+  .contact .contact-content .connection .address_big {
+    margin-bottom: 14px;
+  }
+  .contact .contact-content .connection .address .company {
+    display: inline-block;
+    width: 56px;
+    text-align: justify;
+    text-align-last: justify;
+  }
+  .contact .contact-content .publicNumber {
+    width: 235px;
+    height: 200px;
+    right: 100px;
+    top: 87px;
+  }
+  .contact .contact-content .publicNumber .public-code {
+    top: -160px;
+    left: -18px;
+    width: 150px;
+  }
+  .contact .contact-content .publicNumber ul {
+    height: 100px;
+  }
+  .contact .contact-content .publicNumber ul li {
+    width: 50%;
+  }
+  .contact .contact-content .publicNumber ul li img {
+    width: 49px;
+    height: 49px;
+  }
+  .contact .contact-content .publicNumber ul li span {
+    font-size: 14px;
+    margin-top: 16px;
+  }
+  .contact .contact-content .publicNumber p {
+    font-size: 14px;
+  }
+  .contact .contact-content .line {
+    width: 95%;
+    height: 1px;
+    top: 289px;
+  }
+  .contact .contact-content .case {
+    top: 309px;
+    font-size: 12px;
+  }
+}
+/*>=1366的设备*/
+@media (min-width: 1366px) {
+  body {
+    font-size: 24px;
+  }
+  .header {
+    height: 74px;
+  }
+  .header .header-content {
+    width: 1200px;
+  }
+  .header .header-content img {
+    width: 57px;
+    height: 50px;
+    margin-top: 11px;
+  }
+  .header .header-content .logoText {
+    margin-top: 24px;
+    margin-left: 12px;
+    font-size: 20px;
+  }
+  .header .header-content .logoText span:last-child {
+    margin-top: 12px;
+    font-size: 14px;
+  }
+  .header .header-content .nav {
+    font-size: 20px;
+  }
+  .header .header-content .nav li {
+    margin-right: 50px;
+    height: 70px;
+    line-height: 74px;
+  }
+  .header .header-content .nav li:nth-child(2) {
+    border-bottom: 4px solid #2297E1;
+  }
+  .banner {
+    margin-top: 74px;
+  }
+  .container {
+    width: 1200px;
+  }
+  .container .title {
+    font-size: 24px;
+    margin-top: 79px;
+  }
+  .container .time {
+    font-size: 16px;
+    margin-top: 19px;
+    padding-bottom: 52px;
+  }
+  .container .content {
+    margin-top: 52px;
+    font-size: 20px;
+    line-height: 32px;
+  }
+  .container .footer {
+    height: 68px;
+    margin-top: 161px;
+    margin-bottom: 135px;
+    font-size: 20px;
+    line-height: 68px;
+  }
+  .container .footer .left div {
+    line-height: 34px;
+  }
+  .container .footer .right {
+    line-height: 68px;
+  }
+  .container .footer .right button {
+    width: 150px;
+    height: 60px;
+    line-height: 60px;
+  }
+  .contact {
+    height: 37.9vmin;
+  }
+  .contact .contact-content {
+    width: 1200px;
+  }
+  .contact .contact-content .title {
+    top: 60px;
+    left: 20[x];
+    height: 35px;
+    line-height: 35px;
+  }
+  .contact .contact-content .title span:first-child {
+    font-size: 30px;
+    margin-left: 8px;
+  }
+  .contact .contact-content .title span:nth-child(2) {
+    font-size: 30px;
+  }
+  .contact .contact-content .title span:last-child {
+    font-size: 18px;
+  }
+  .contact .contact-content .connection {
+    top: 123px;
+    left: 20px;
+    font-size: 16px;
+  }
+  .contact .contact-content .connection .tel {
+    margin-bottom: 18px;
+  }
+  .contact .contact-content .connection .email {
+    margin-bottom: 18px;
+  }
+  .contact .contact-content .connection .address_big {
+    margin-bottom: 18px;
+  }
+  .contact .contact-content .connection .address .company {
+    display: inline-block;
+    width: 64px;
+    text-align: justify;
+    text-align-last: justify;
+  }
+  .contact .contact-content .publicNumber {
+    right: 160px;
+    top: 121px;
+  }
+  .contact .contact-content .publicNumber .public-code {
+    top: -200px;
+    left: -52px;
+    width: 190px;
+  }
+  .contact .contact-content .publicNumber ul li span {
+    font-size: 16px;
+    margin-top: 16px;
+  }
+  .contact .contact-content .publicNumber p {
+    font-size: 16px;
+  }
+  .contact .contact-content .line {
+    width: 1160px;
+    top: 306px;
+  }
+  .contact .contact-content .case {
+    top: 332px;
+  }
+}

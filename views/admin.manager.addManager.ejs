@@ -1,0 +1,70 @@
+<%- include('compoment/adminHeader', {type: 'admin.manager'}) %>
+
+<body style="padding: 20px">
+    <form class="layui-form" id="addManagerForm">
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-block managerForm-input">
+                <input type="text" name="username" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="请输入用户名"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-block managerForm-input">
+                <input type="password" name="password" lay-verify="required" lay-reqtext="密码不能为空" placeholder="请输入密码"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">昵称</label>
+            <div class="layui-input-block managerForm-input">
+                <input type="text" name="nickname" placeholder="请输入昵称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">角色分类</label>
+            <div class="layui-input-block managerForm-input">
+                <select name="roleType" lay-filter="role">
+                    <option value="0" selected>超级管理员</option>
+                    <option value="1">管理员</option>
+                    <option value="2">运营</option>
+                    <option value="3">测试</option>
+                    <option value="4">开发</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block managerForm-input">
+                <button type="button" class="layui-btn layui-btn-addManager" lay-submit lay-filter="addManager">提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary layui-btn-addManager">返回</button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        //Demo
+        layui.use(['jquery', 'form'], function () {
+            var form = layui.form
+            var $ = layui.jquery
+            var index = parent.layer.getFrameIndex(window.name);
+            //监听提交
+            form.on('submit(addManager)', function (data) {
+                try {
+                    let params = $('#addManagerForm').serialize()
+                    let url = `/data/addUser`
+                    $.post(url, params, function (res) {
+                        if (res.code === 200) {
+                            parent.layer.close(index)
+                            parent.location.reload()
+                        } else {
+                            layer.msg(res.message)
+                        }
+                    }, 'json')
+                } catch (e) {
+                    layer.msg(e)
+                }
+            });
+        });
+    </script>
+<% include compoment/adminFooter %>

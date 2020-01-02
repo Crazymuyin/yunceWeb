@@ -1,0 +1,54 @@
+/*外层iframe框架公共样式*/
+.layadmin-iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/*表格行高*/
+.layui-table-cell {
+    height: 30px;
+}
+
+/*webInfo内层iframe*/
+.layadmin-iframe-webConfig {
+    width: 100%;
+    height: 680px;
+}
+
+/*网站信息配置页面表单样式*/
+/*表单外层样式*/
+.form {
+    width: 30%;
+    margin: 10px auto;
+}
+/*表单label标签*/
+.form.layui-form-label {
+    width: 56px;
+    padding: 9px 15px 9px 0;
+}
+/*表单input框*/
+.form.layui-input-block {
+    margin-left: 71px !important;
+}
+/*表单按钮*/
+.layui-btn-webInfo {
+    width: 100px;
+}
+
+/*管理员-添加管理员页面表单样式*/
+.managerForm-input {
+    width: 65%;
+}
+.layui-btn-addManager {
+    width: 120px;
+}
+
+.singleEditForm .managerForm-input {
+    width: 80% !important;
+}
+

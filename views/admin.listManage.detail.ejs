@@ -1,0 +1,158 @@
+<%- include('compoment/adminHeader', {type: 'admin.listManage.detail'}) %>
+
+<body style="padding: 20px">
+<form class="layui-form singleEditForm" id="singleEditForm">
+    <div class="layui-form-item">
+        <label class="layui-form-label">栏目名称</label>
+        <div class="layui-input-inline">
+            <div class="layui-form-mid layui-word-aux" id="classId"><%= editInfo.classname ? editInfo.classname : '--' %></div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">文章标题</label>
+        <div class="layui-input-block managerForm-input">
+            <div class="layui-form-mid layui-word-aux" id="classId"><%= editInfo.title ? editInfo.title : '--' %></div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">文章来源</label>
+        <div class="layui-input-block managerForm-input">
+            <div class="layui-form-mid layui-word-aux" id="classId"><%= editInfo.source ? editInfo.source : '--' %></div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">作者编辑</label>
+        <div class="layui-input-block managerForm-input">
+            <div class="layui-form-mid layui-word-aux" id="classId"><%= editInfo.author ? editInfo.author : '--' %></div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">缩略图片</label>
+        <div class="layui-input-block managerForm-input">
+            <div class="layui-form-mid layui-word-aux" id="classId"><%= editInfo.picUrl ? editInfo.picUrl : '--' %></div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">跳转链接</label>
+        <div class="layui-input-block managerForm-input">
+            <div class="layui-form-mid layui-word-aux" id="classId"><%= editInfo.linkurl ? editInfo.linkurl : '--' %></div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">关键词</label>
+        <div class="layui-input-block managerForm-input">
+            <div class="layui-form-mid layui-word-aux" id="classId"><%= editInfo.keywords ? editInfo.keywords : '--' %></div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">摘　要</label>
+        <div class="layui-input-block managerForm-input">
+            <div class="layui-form-mid layui-word-aux" id="classId"><%= editInfo.description ? editInfo.description : '--' %></div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">内　　容</label>
+        <div class="layui-input-block managerForm-input">
+            <textarea id="singleEdit" style="display: none;"><%= editInfo.content %></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">点击次数</label>
+        <div class="layui-input-inline">
+            <div class="layui-form-mid layui-word-aux" id="classId"><%= editInfo.hits ? editInfo.hits : '--' %></div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">排列排序</label>
+        <div class="layui-input-inline">
+            <div class="layui-form-mid layui-word-aux" id="classId"><%= editInfo.orderid ? editInfo.orderid : '--' %></div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">更新时间</label>
+        <div class="layui-input-inline">
+            <div class="layui-form-mid layui-word-aux" id="classId"><%= editInfo.posttime ? editInfo.posttime : '--' %></div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">审　核</label>
+        <div class="layui-input-inline">
+            <div class="layui-form-mid layui-word-aux" id="classId"><%= editInfo.checkinfo ? '显示' : '隐藏' %></div>
+        </div>
+    </div>
+</form>
+
+<script>
+    //Demo
+    layui.use(['jquery', 'form', 'layedit', 'upload', 'laydate'], function () {
+        var form = layui.form
+        var $ = layui.jquery
+        var upload = layui.upload
+        var laydate = layui.laydate
+
+        var layEdit = layui.layedit;
+        layEdit.set({
+            uploadImage: {
+                url: '/upload/uploadFile',
+                type: 'post'
+            }
+        })
+        var editIndex = layEdit.build('singleEdit', {
+            height: 180,
+            tool: []
+        });
+
+        upload.render({
+            elem: '#uploadBtn',
+            url: '/upload/uploadFile',
+            size: 1024,
+            done: function(res){
+                if (res.code === 0) {
+                    $("input[name='picUrl']").attr("value", res.data.src)
+                    layer.msg(res.msg)
+                }
+            }
+        })
+
+        laydate.render({
+            elem: '#updateTime'
+        })
+
+        var index = parent.layer.getFrameIndex(window.name);
+        //监听提交
+        form.on('submit(infoSubmit)', function (data) {
+            try {
+                let obj = {}
+                obj.content = layEdit.getContent(editIndex)
+                obj.id = $("input[name='title']").data('id')
+                let params = $('#singleEditForm').serialize()
+                params = decodeURIComponent(params)
+                let paramsArr = params.split('&')
+                paramsArr.forEach(item => {
+                    let arr = item.split('=')
+                    obj[arr[0]] = arr[1]
+                })
+                if (obj.hasOwnProperty('columnName')) {
+                    let columnArr = obj.columnName.split('-')
+                    obj.parentId = columnArr[0]
+                    obj.classId = columnArr[1]
+                    obj.className = columnArr[2]
+                    delete obj.columnName
+                }
+                let url = `/data/listInfo/add`
+                $.post(url, obj, function (res) {
+                    if (res.code === 200) {
+                        parent.layer.close(index)
+                        parent.location.reload()
+                    } else {
+                        layer.msg(res.message)
+                    }
+                }, 'json')
+            } catch (e) {
+                layer.msg(e)
+            }
+        });
+    });
+</script>
+<% include compoment/adminFooter %>
+

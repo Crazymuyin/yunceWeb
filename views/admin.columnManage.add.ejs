@@ -1,0 +1,152 @@
+<%- include('compoment/adminHeader', {type: 'admin.columnManage.add'}) %>
+
+<body style="padding: 20px">
+<form class="layui-form" id="addColumnForm">
+    <div class="layui-form-item">
+        <label class="layui-form-label">栏目类型</label>
+        <div class="layui-input-block managerForm-input">
+            <select name="infoType" lay-filter="role">
+                <option value="0" <%= Number(editInfo.infotype) === 0 ? 'selected' : '' %>>单页</option>
+                <option value="1" <%= Number(editInfo.infotype) === 1 ? 'selected' : '' %>>列表</option>
+                <option value="2" <%= Number(editInfo.infotype) === 2 ? 'selected' : '' %>>图片</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">所属栏目</label>
+        <div class="layui-input-block managerForm-input">
+            <select name="roleType" lay-filter="role">
+                <% newArr.forEach(item => { %>
+                <option value="<%= `${item.parentId}-${item.id}-${item.className}` %>" <%= editInfo.id === item.id ? 'selected' : '' %>><%= item.className %></option>
+                <% if (item.hasOwnProperty('children')) {
+                    item.children.forEach(list => { %>
+                        <option value="<%= `${list.parentId}-${list.id}-${list.className}` %>" <%= editInfo.id === list.id ? 'selected' : '' %>><%= "----"+list.className %></option>
+                    <% }) %>
+                <% }}) %>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">栏目名称</label>
+        <div class="layui-input-block managerForm-input">
+            <input type="text" name="className" placeholder="请输入栏目名称" autocomplete="off" class="layui-input" data-id="<%= editInfo.id %>" value="<%= editInfo.classname %>">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">跳转链接</label>
+        <div class="layui-input-block managerForm-input">
+            <input type="text" name="linkUrl" placeholder="请输入跳转链接" autocomplete="off" class="layui-input" value="<%= editInfo.linkurl %>">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">SEO标题</label>
+        <div class="layui-input-block managerForm-input">
+            <input type="text" name="seoTitle" placeholder="请输入SEO标题" autocomplete="off" class="layui-input" value="<%= editInfo.seotitle %>">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">关键词</label>
+        <div class="layui-input-block managerForm-input">
+            <input type="text" name="keywords" placeholder="请输入关键词" autocomplete="off" class="layui-input" value="<%= editInfo.keywords %>">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">栏目描述</label>
+        <div class="layui-input-block managerForm-input">
+            <textarea placeholder="请输入栏目描述" name="description" class="layui-textarea" autocomplete="off" value="<%= editInfo.description %>"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">排列排序</label>
+        <div class="layui-input-block managerForm-input">
+            <input type="text" name="orderId" placeholder="请输入排列ID" autocomplete="off" class="layui-input" value="<%= editInfo.orderid %>">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">隐藏栏目</label>
+        <div class="layui-input-block managerForm-input">
+            <% if (editInfo.checkinfo !== 0) { %>
+            <input type="radio" name="checkInfo" value="1" title="显示" checked>
+            <input type="radio" name="checkInfo" value="0" title="隐藏">
+            <% } else { %>
+            <input type="radio" name="checkInfo" value="1" title="显示">
+            <input type="radio" name="checkInfo" value="0" title="隐藏" checked>
+            <% }%>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block managerForm-input">
+            <button type="button" class="layui-btn layui-btn-addManager" lay-submit lay-filter="addManager">提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-addManager">返回</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    //Demo
+    layui.use(['jquery', 'form', 'upload'], function () {
+        var form = layui.form
+        var $ = layui.jquery
+        var upload = layui.upload
+        var index = parent.layer.getFrameIndex(window.name);
+        var picUrl
+        upload.render({
+            elem: '#uploadImg',
+            url: '/upload/',
+            size: 60, //限制文件大小，单位 KB
+            done: function(res){
+                console.log(res)
+                picUrl = res
+            }
+        });
+
+        //监听提交
+        form.on('submit(addManager)', function (data) {
+            try {
+                let params = $('#addColumnForm').serialize()
+                params = decodeURIComponent(params)
+                let paramsArr = params.split('&')
+                let obj = {}
+                obj.id = $("input[name='className']").data('id')
+                paramsArr.forEach(item => {
+                    let arr = item.split('=')
+                    if (arr[1]) {
+                        obj[arr[0]] = arr[1]
+                    }
+                })
+                if (obj.hasOwnProperty('roleType')) {
+                    let roleTypeArr = obj.roleType.split('-')
+                    if (roleTypeArr[0]) {
+                        if (obj.id) {
+                            obj.parentId = Number(roleTypeArr[0])
+                        } else {
+                            obj.parentId = Number(roleTypeArr[1])
+                        }
+                    }
+                    if (roleTypeArr[2]) obj.parentStr = roleTypeArr[2]
+                }
+                if (picUrl) obj.picUrl = picUrl
+                obj.infoType = Number(obj.infoType)
+                obj.checkInfo = Number(obj.checkInfo)
+                obj.orderId = Number(obj.orderId)
+                let url = ``
+                if (obj.id) {
+                    url = `/data/updateColumn`
+                } else {
+                    url = `/data/addColumnManager`
+                }
+                $.post(url, obj, function (res) {
+                    if (res.code === 200) {
+                        parent.layer.close(index)
+                        parent.location.reload()
+                    } else {
+                        layer.msg(res.message)
+                    }
+                }, 'json')
+            } catch (e) {
+                layer.msg(e)
+            }
+        });
+    });
+</script>
+<% include compoment/adminFooter %>

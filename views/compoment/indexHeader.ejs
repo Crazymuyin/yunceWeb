@@ -1,0 +1,16 @@
+<div class="header">
+    <div class="header-content">
+        <div class="logo">
+            <img src="/home/imgs/home/icon_login_logo.png" alt="云测,测声誉,测风险,测舆情,中正舆情,网络舆情,舆情监测,舆情管理，个人，危机公关，舆情风险，风险管理，危机应对，网信健康，网信安全">
+            <div class="logoText">
+                <span>为您提供精准的网信健康价值</span>
+                <span>Provide You With Accurate Online Health Value</span>
+            </div>
+        </div>
+        <ul class="nav">
+            <% homeMenuArr.forEach(item => { %>
+            <li><a href="<%= item.linkurl %>"><%= item.classname %></a></li>
+            <% }) %>
+        </ul>
+    </div>
+</div>

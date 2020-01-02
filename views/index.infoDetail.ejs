@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- header %>
+    <link rel="stylesheet" href="/home/css/infoDetail.css">
+    <%- include('compoment/publicImport', {type: 'index.infoDetail'}) %>
+    <script src="/home/js/jquery-2.1.1.min.js"></script>
+    <script src="/home/js/function.js"></script>
+</head>
+
+<body>
+<div class="wrapper">
+    <%- include('compoment/indexHeader', {type: 'index.infoDetail'}) %>
+    <div class="banner">
+        <img src="<%= detailBannerSrc.picurl %>" alt="<%= detailBannerSrc.keywords %>">
+    </div>
+    <div class="container">
+        <div class="title"><%= detailInfo.title %></div>
+        <div class="time"><%= detailInfo.dateTime %></div>
+        <div class="content">
+            <%- detailInfo.content %>
+        </div>
+        <div class="footer">
+            <div class="left">
+                <% if (detailInfo.content) { %>
+                <div>
+                    <span>上一篇：</span>
+                    <% if (detailInfo.pre) { %>
+                    <a href="<%= detailInfo.pre.url %>"><%= detailInfo.pre.title %></a>
+                    <% } else { %>
+                    无
+                    <% } %>
+                </div>
+                <div>
+                    <span>下一篇：</span>
+                    <% if (detailInfo.next) { %>
+                    <a href="<%= detailInfo.next.url %>"><%= detailInfo.next.title %></a>
+                    <% } else { %>
+                    无
+                    <% } %>
+                </div>
+                <% } %>
+            </div>
+            <div class="right">
+                <a href="javascript:window.opener=null;window.open('','_self');window.close();"><button>返回</button></a>
+            </div>
+        </div>
+    </div>
+    <%- include('compoment/indexFooter', {type: 'index.infoDetail'}) %>
+</div>
+</body>
+
+</html>

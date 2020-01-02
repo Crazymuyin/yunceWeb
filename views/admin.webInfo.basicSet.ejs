@@ -1,0 +1,32 @@
+<%- include('compoment/adminHeader', {type: 'admin.webInfo.basicSet'}) %>
+<body>
+    <div class="layui-form form">
+        <% webInfoList.forEach(item => { %>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><%= item.varinfo %></label>
+            <div class="layui-input-block">
+                <input type="text" data-id="<%= item.id %>" id="<%= item.varname%>" name="<%= item.varname%>" lay-verify="required" lay-reqtext="<%= item.varinfo %>不能为空" placeholder="请输入<%= item.varinfo %>"
+                       autocomplete="off" class="layui-input" value="<%= item.varvalue %>" onblur="onBlueFun(this)">
+            </div>
+        </div>
+        <% }) %>
+    </div>
+    <script type="application/javascript">
+        layui.use('form', function () {
+            var $ = layui.jquery
+
+            window.onBlueFun = function (e) {
+                $.post('/data/updateWebConfig', {
+                    id: $("#"+e.name).data('id'),
+                    addValue: document.getElementsByName(e.name)[0].value
+                }, function (result) {
+                    if (result.code === 200) {
+                        layer.msg(result.message)
+                    } else {
+                        layer.msg(result.message)
+                    }
+                })
+            }
+        })
+    </script>
+<% include compoment/adminFooter %>

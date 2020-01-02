@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>后台登录</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="后台登录" />
+    <!--Google Fonts-->
+    <!--<link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    --><!--Google Fonts-->
+    <link href="/layui/css/layui.css" rel="stylesheet" />
+    <link href="/admin/admin.style.css" rel="stylesheet" type="text/css" media="all"/>
+    <script src="/layui/layui.js"></script>
+</head>
+<body>
+<!--header start here-->
+<div class="login-form">
+    <div class="top-login">
+        <span><img src="/imgs/login/group.png" alt=""/></span>
+    </div>
+    <h1>登录</h1>
+    <div class="login-top">
+        <form class="form create" method="post">
+            <div class="login-ic">
+                <i ></i>
+                <input type="text" name="name" placeholder="User name"/>
+                <div class="clear"> </div>
+            </div>
+            <div class="login-ic">
+                <i class="icon"></i>
+                <input type="password" name="password" placeholder="password"/>
+                <div class="clear"> </div>
+            </div>
+
+            <div class="log-bwn">
+                <input type="button" class="submit" value="Login">
+            </div>
+        </form>
+    </div>
+    <p class="copy">© 2016 xxxxxxxxxxx</p>
+</div>
+<!--header start here-->
+<script>
+    layui.use(['jquery', 'layer', 'form'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+
+        $(window).keyup(function (e) {
+            if (e.keyCode === 13) {
+                $('.submit').click()
+            }
+        })
+        $('.submit').click(function () {
+            if ($('input[name=name]').val().trim() === '' || $('input[name=password]').val().trim() === '') {
+                layer.msg('请输入用户名或密码')
+                return false
+            } else {
+                $.post('/public/login', $('.form').serialize(), function (msg) {
+                    if (msg.code === 200) {
+                        layer.msg('登录成功')
+                        setTimeout(function () {
+                            window.location.href = '/admin'
+                        }, 1500)
+                    } else {
+                        $('input').val('')
+                        layer.msg('用户名或密码错误')
+                    }
+                }, 'json')
+            }
+        })
+    })
+</script>
+</body>
+</html>

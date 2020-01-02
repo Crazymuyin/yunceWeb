@@ -1,0 +1,89 @@
+<%- include('compoment/adminHeader', {type: 'admin.friendshipLink'}) %>
+
+<body style="padding: 20px">
+<blockquote class="layui-elem-quote">友情链接管理</blockquote>
+<table class="layui-hide" id="links" lay-filter="links"></table>
+<script type="text/html" id="toolbarLinksAdd">
+    <button class="layui-btn layui-btn-sm" id="linksAdd" lay-event="linksAdd">添加友情链接</button>
+</script>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
+</script>
+<script type="text/html" id="logo">
+    <img style="display: inline-block; width: 80%; height: 100%;" src= {{ d.picurl }}>
+</script>
+<script>
+    layui.use(['table', 'jquery'], function () {
+        var table = layui.table;
+        var $ = layui.jquery
+        //监听表格复选框选择
+        table.on('checkbox(links)', function (obj) {
+            console.log(obj)
+        });
+        //监听工具条
+        table.on('tool(links)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                layer.msg('ID：' + data.id + ' 的查看操作');
+            } else if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    deleteLinks(obj, index)
+                });
+            } else if (obj.event === 'edit') {
+                layer.alert('编辑行：<br>' + JSON.stringify(data))
+            }
+        });
+
+        table.on('toolbar(links)', (obj) => {
+            if (obj.event === 'linksAdd') {
+                openLinkEditPage()
+            }
+        })
+
+        table.render({
+            elem: '#links',
+            url: '/data/getFriendshipLink',
+            page: true,
+            cellMinWidth: 80,  //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            toolbar: '#toolbarLinksAdd',
+            cols: [[
+                { type:'checkbox', width:100 },
+                { field:'id', width:120, title: 'ID', sort: true, align: 'center' },
+                { field:'picurl', title:'网站LOGO', align:'center', width:200, templet:'#logo', align: 'center' },
+                { field:'webname', width:450, title: '站点名称', align: 'center' },
+                { field:'linkurl', width:470, title: '站点URL', align: 'center', sort: true },
+                { fixed: 'right', title: '操作', align: 'center', toolbar: '#barDemo', width: '333' }
+            ]]
+        });
+
+        function deleteLinks(obj, index) {
+            try {
+                let params = { id: obj.data.id }
+                let url = `/data/deleteFriendLink/delete`
+                $.post(url, params, function (res) {
+                    if (res.code === 200) {
+                        layer.msg(res.message)
+                        obj.del();
+                        layer.close(index);
+                    } else {
+                        layer.msg(res.message)
+                    }
+                }, 'json')
+            } catch (e) {
+                layer.msg(e)
+            }
+        }
+
+        function openLinkEditPage() {
+            layer.open({
+                title: '添加友情链接',
+                type: 2,
+                area: ['523px', '310px'],
+                fixed: false,
+                maxmin: true,
+                content: `/admin/friendshipLink/add`
+            })
+        }
+    })
+</script>
+<% include compoment/adminFooter %>

@@ -1,0 +1,72 @@
+<%- include('compoment/adminHeader', {type: 'admin.friendshipLink.add'}) %>
+
+<body style="padding: 20px">
+    <form class="layui-form" id="addLinkForm">
+        <div class="layui-form-item">
+            <label class="layui-form-label">站点名称</label>
+            <div class="layui-input-block managerForm-input">
+                <input type="text" name="webName" placeholder="请输入站点名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">站点地址</label>
+            <div class="layui-input-block managerForm-input">
+                <input type="text" name="linkUrl" placeholder="请输入站点地址" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">网站Logo</label>
+            <div class="layui-input-block managerForm-input">
+                <div class="layui-input-inline">
+                    <input type="text" name="picUrl" id="picUrl" autocomplete="off" class="layui-input">
+                </div>
+                <button type="button" class="layui-btn layui-btn-danger" id="uploadBtn"><i class="layui-icon"></i>上传图片</button>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block managerForm-input">
+                <button type="button" class="layui-btn layui-btn-addManager" lay-submit lay-filter="addLink">提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary layui-btn-addManager">返回</button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        //Demo
+        layui.use(['jquery', 'form', 'upload'], function () {
+            var form = layui.form
+            var $ = layui.jquery
+            var upload = layui.upload
+            var index = parent.layer.getFrameIndex(window.name);
+
+            upload.render({
+                elem: '#uploadBtn',
+                url: '/upload/uploadFile',
+                size: 1024,
+                done: function(res){
+                    if (res.code === 0) {
+                        $("input[name='picUrl']").attr("value", res.data.src)
+                        layer.msg(res.msg)
+                    }
+                }
+            })
+            //监听提交
+            form.on('submit(addLink)', function (data) {
+                try {
+                    let params = $('#addLinkForm').serialize()
+                    let url = `/data/addFriendLink`
+                    $.post(url, params, function (res) {
+                        if (res.code === 200) {
+                            parent.layer.close(index)
+                            parent.location.reload()
+                        } else {
+                            layer.msg(res.message)
+                        }
+                    }, 'json')
+                } catch (e) {
+                    layer.msg(e)
+                }
+            });
+        });
+    </script>
+<% include compoment/adminFooter %>

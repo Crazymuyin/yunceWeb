@@ -1,0 +1,1827 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 62.5% !important;
+}
+::-webkit-scrollbar
+{
+  width: 10px;
+  height: 10px;
+  background-color: #F5F5F5;
+}
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track
+{
+  border-radius: 5px;
+  background-color: #F5F5F5;
+}
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  background-color: #bdbdbd;
+}
+/*滑块效果*/
+::-webkit-scrollbar-thumb:hover
+{
+  border-radius: 10px;
+  background: rgba(0,0,0,0.4);
+}
+.bk {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: -10;
+}
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
+.wrapper .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: #fff;
+  z-index: 1000;
+  background-color: #333;
+}
+.wrapper .header .header-content {
+  position: relative;
+  margin: 0 auto;
+  height: 100%;
+  line-height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.wrapper .header .header-content .logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.wrapper .header .header-content .logo .logoText {
+  display: flex;
+  flex-direction: column;
+}
+.wrapper .header .header-content .nav {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.wrapper .header .header-content .nav li a {
+  color: #fff;
+  text-decoration: none;
+}
+.wrapper .header .header-content .nav li a:hover {
+  color: #fff;
+}
+.wrapper .header .header-content .nav li a:active {
+  color: #fff;
+}
+.wrapper .banner {
+  background: url(/home/imgs/home/banner.png) no-repeat;
+  background-size: 100% 100%;
+}
+.wrapper .banner .banner-container {
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+.wrapper .banner .banner-container .left {
+  display: flex;
+  flex-direction: column;
+}
+.wrapper .banner .banner-container .left .yunce-title {
+  color: #f5f5f5;
+  font-weight: 500;
+  display: block;
+}
+.wrapper .banner .banner-container .left span:nth-child(2) {
+  color: #f5f5f5;
+}
+.wrapper .banner .banner-container .left .yunce-func {
+  color: #fff;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+}
+.wrapper .banner .banner-container .left .yunce-func li img {
+  height: 100%;
+  vertical-align: middle;
+}
+.wrapper .banner .banner-container .left .down {
+  display: flex;
+  flex-direction: row;
+}
+.wrapper .banner .banner-container .left .down span {
+  color: #f5f5f5;
+  margin: 0;
+}
+.wrapper .banner .banner-container .left .down img {
+  height: 100%;
+}
+.wrapper .banner .banner-container .left .code {
+  color: #fff;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+}
+.wrapper .banner .banner-container .left .code li {
+  text-align: center;
+}
+.wrapper .banner .banner-container .left .code li img {
+  width: 100%;
+}
+.wrapper .banner .banner-container .right {
+  position: relative;
+}
+.wrapper .banner .banner-container .right img {
+  width: 100%;
+}
+.wrapper .banner .banner-container .right .iframe {
+  position: absolute;
+}
+.wrapper .banner .banner-container .right .iframe video {
+  width: 100%;
+  height: 100%;
+}
+.wrapper .banner .banner-container .mouse {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: mouse 2s infinite ease-out;
+}
+@keyframes mouse {
+  0% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+}
+.wrapper .proIntro {
+  position: relative;
+  width: 100%;
+  background-color: #f9f9f9;
+}
+.wrapper .proIntro .intro-content {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.wrapper .proIntro .intro-content .title {
+  position: absolute;
+  border-left: 5px solid #2CBFEF;
+}
+.wrapper .proIntro .intro-content .title span:first-child {
+  font-family: 'MicrosoftYaHei';
+}
+.wrapper .proIntro .intro-content .title span:nth-child(2) {
+  font-family: 'TimesNewRomanPSMT';
+}
+.wrapper .proIntro .intro-content .title span:last-child {
+  font-family: 'TimesNewRomanPSMT';
+}
+.wrapper .proIntro .intro-content .content {
+  position: absolute;
+}
+.wrapper .proIntro .intro-content .content p {
+  text-indent: 2em;
+  text-align: justify;
+}
+.wrapper .proIntro .intro-content img {
+  position: absolute;
+}
+.wrapper .problem {
+  position: relative;
+  width: 100%;
+  background: transparent;
+}
+.wrapper .problem .pro-content {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.wrapper .problem .pro-content .title {
+  position: absolute;
+  border-left: 5px solid #2CBFEF;
+}
+.wrapper .problem .pro-content .title span:first-child {
+  font-family: 'MicrosoftYaHei';
+}
+.wrapper .problem .pro-content .title span:nth-child(2) {
+  font-family: 'TimesNewRomanPSMT';
+}
+.wrapper .problem .pro-content .title span:last-child {
+  font-family: 'TimesNewRomanPSMT';
+}
+.wrapper .problem .pro-content img {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+.wrapper .problem img {
+  width: 100%;
+}
+.wrapper .application {
+  position: relative;
+  width: 100%;
+}
+.wrapper .application .shadow {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: rgb(46, 198, 247);
+  z-index: -20;
+}
+.wrapper .application .app-content {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.wrapper .application .app-content .title {
+  position: absolute;
+  border-left: 5px solid #fff;
+}
+.wrapper .application .app-content .title span:first-child {
+  font-family: 'MicrosoftYaHei';
+}
+.wrapper .application .app-content .title span:nth-child(2) {
+  font-family: 'TimesNewRomanPSMT';
+}
+.wrapper .application .app-content .title span:last-child {
+  font-family: 'TimesNewRomanPSMT';
+}
+.wrapper .application .app-content .appli-row-one {
+  position: relative;
+  padding: 0;
+  display: flex;
+  list-style-type: none;
+  text-align: center;
+  color: #fff;
+}
+.wrapper .application .app-content .appli-row-one li {
+  flex-grow: 1;
+}
+.wrapper .application .app-content .appli-row-one li div {
+  position: relative;
+}
+.wrapper .application .app-content .appli-row-one li div img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  filter: grayscale(100%);
+}
+.wrapper .application .app-content .appli-row-one li div img:hover {
+  filter: grayscale(0);
+}
+.wrapper .application .app-content .appli-row-two {
+  position: relative;
+  padding: 0;
+  display: flex;
+  list-style-type: none;
+  text-align: center;
+  color: #fff;
+}
+.wrapper .application .app-content .appli-row-two li {
+  flex-grow: 1;
+}
+.wrapper .application .app-content .appli-row-two li div {
+  position: relative;
+}
+.wrapper .application .app-content .appli-row-two li div img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  filter: grayscale(100%);
+}
+.wrapper .application .app-content .appli-row-two li div img:hover {
+  filter: grayscale(0);
+}
+.wrapper .application img {
+  width: 100%;
+}
+.wrapper .function {
+  position: relative;
+  width: 100%;
+  background: #fff;
+}
+.wrapper .function .func-content {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.wrapper .function .func-content .title {
+  position: absolute;
+  border-left: 5px solid #2CBFEF;
+}
+.wrapper .function .func-content .title span:first-child {
+  font-family: 'MicrosoftYaHei';
+}
+.wrapper .function .func-content .title span:nth-child(2) {
+  font-family: 'TimesNewRomanPSMT';
+}
+.wrapper .function .func-content .title span:last-child {
+  font-family: 'TimesNewRomanPSMT';
+}
+.wrapper .function .func-content ul {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-flow: row wrap;
+  list-style-type: none;
+  padding: 0;
+}
+.wrapper .function .func-content ul li {
+  display: flex;
+  flex-direction: column;
+  background: #fafafa;
+}
+.wrapper .function .func-content ul li span {
+  color: #333;
+}
+.wrapper .function .func-content ul li p {
+  color: #666;
+  margin: 0 auto;
+  text-align: justify;
+}
+.wrapper .function .func-content ul li:last-child {
+  margin-right: 0;
+}
+.wrapper .coreTech {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+}
+.wrapper .coreTech .core-content {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.wrapper .coreTech .core-content .title {
+  position: absolute;
+  border-left: 5px solid #2CBFEF;
+}
+.wrapper .coreTech .core-content .title span:first-child {
+  font-family: 'MicrosoftYaHei';
+}
+.wrapper .coreTech .core-content .title span:nth-child(2) {
+  font-family: 'TimesNewRomanPSMT';
+}
+.wrapper .coreTech .core-content .title span:last-child {
+  font-family: 'TimesNewRomanPSMT';
+}
+.wrapper .imgGroup {
+  width: 100%;
+}
+.wrapper .imgGroup ul {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  list-style-type: none;
+}
+.wrapper .imgGroup ul li {
+  width: 50%;
+  position: relative;
+  background: rgba(0, 0, 0, 0.6);
+}
+.wrapper .imgGroup ul li img {
+  height: 100%;
+}
+.wrapper .imgGroup ul li .one-four-circle {
+  width: 3.8vmin;
+  height: 3.8vmin;
+  border-radius: 100% 0 0 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+}
+.wrapper .imgGroup ul li .one-four-circle_two {
+  width: 3.8vmin;
+  height: 3.8vmin;
+  border-radius: 0 100% 0 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+}
+.wrapper .imgGroup ul li .one-four-circle_three {
+  width: 3.8vmin;
+  height: 3.8vmin;
+  border-radius: 0 0 0 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
+}
+.wrapper .imgGroup ul li .one-four-circle_four {
+  width: 3.8vmin;
+  height: 3.8vmin;
+  border-radius: 0 0 100% 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+.wrapper .imgGroup ul li .hoverBk {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(44, 191, 239, 0.6);
+  text-align: center;
+  display: none;
+}
+.wrapper .imgGroup ul li .font {
+  position: absolute;
+  z-index: 200;
+}
+.wrapper .imgGroup ul li .font p:first-child {
+  color: #fff;
+  text-align: left;
+}
+.wrapper .imgGroup ul li .font p:last-child {
+  text-align: left;
+  color: #fff;
+  text-overflow: ellipsis;
+}
+.wrapper .imgGroup ul li:hover .hoverBk {
+  display: block;
+}
+.wrapper .imgGroup ul li:hover .circle {
+  display: none;
+}
+.wrapper .contact {
+  position: relative;
+  width: 100%;
+  background: url(/home/imgs/home/group2.png);
+}
+.wrapper .contact .contact-content {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.wrapper .contact .contact-content .title {
+  position: absolute;
+  border-left: 5px solid #2CBFEF;
+}
+.wrapper .contact .contact-content .title span:first-child {
+  font-family: 'MicrosoftYaHei';
+}
+.wrapper .contact .contact-content .title span:nth-child(2) {
+  font-family: 'TimesNewRomanPSMT';
+}
+.wrapper .contact .contact-content .title span:last-child {
+  font-family: 'TimesNewRomanPSMT';
+}
+.wrapper .contact .contact-content .connection {
+  position: absolute;
+  color: #fff;
+}
+.wrapper .contact .contact-content .connection .tel span:nth-child(2),
+.wrapper .contact .contact-content .connection .tel span:last-child {
+  color: #2CBFEF;
+}
+.wrapper .contact .contact-content .connection .email span:last-child {
+  color: #2CBFEF;
+}
+.wrapper .contact .contact-content .connection .address_big {
+  display: block;
+}
+.wrapper .contact .contact-content .connection .address {
+  display: block;
+}
+.wrapper .contact .contact-content .publicNumber {
+  width: 216px;
+  height: 200px;
+  position: absolute;
+}
+.wrapper .contact .contact-content .publicNumber .public-code {
+  position: absolute;
+  display: none;
+}
+.wrapper .contact .contact-content .publicNumber ul {
+  width: 100%;
+  height: 100px;
+  list-style-type: none;
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 0;
+  margin: 0;
+}
+.wrapper .contact .contact-content .publicNumber ul li {
+  width: 50%;
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+}
+.wrapper .contact .contact-content .publicNumber ul li img {
+  width: 49px;
+  height: 49px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+.wrapper .contact .contact-content .publicNumber ul li span {
+  color: #fff;
+}
+.wrapper .contact .contact-content .publicNumber p {
+  font-size: 16px;
+  color: #fff;
+}
+.wrapper .contact .contact-content .line {
+  height: 1px;
+  border-top: 1px solid #666;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.wrapper .contact .contact-content .case {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #fff;
+}
+/*<1024的设备*/
+@media (max-width: 1023px) {
+  body {
+    font-size: 18px;
+    width: 1024px;
+    overflow-x: auto;
+  }
+  .header {
+    height: 64px;
+  }
+  .header .header-content {
+    width: 100%;
+  }
+  .header .header-content img {
+    width: 49px;
+    height: 43px;
+    margin-top: 10px;
+    margin-left: 24px;
+  }
+  .header .header-content .logoText {
+    margin-top: 18px;
+    margin-left: 10px;
+    font-size: 17px;
+  }
+  .header .header-content .logoText span:last-child {
+    margin-top: 10px;
+    font-size: 12px;
+  }
+  .header .header-content .nav {
+    font-size: 17px;
+  }
+  .header .header-content .nav li {
+    margin-right: 25px;
+    height: 61px;
+    line-height: 64px;
+  }
+  .header .header-content .nav li:first-child {
+    border-bottom: 3px solid #2297E1;
+  }
+  .header .header-content .nav li:last-child {
+    margin-right: 18px;
+  }
+  .banner {
+    height: 768px;
+  }
+  .banner .banner-container {
+    width: 1024px;
+  }
+  .banner .banner-container .left {
+    margin-left: 23px;
+  }
+  .banner .banner-container .left .yunce-title {
+    font-size: 52px;
+    margin-top: 185px;
+    width: 525px;
+  }
+  .banner .banner-container .left span:nth-child(2) {
+    font-size: 21px;
+    margin-top: 12px;
+  }
+  .banner .banner-container .left .yunce-func {
+    height: 23px;
+    line-height: 23px;
+    font-size: 24px;
+    margin: 38px 0 0 0;
+  }
+  .banner .banner-container .left .yunce-func li {
+    width: 150px;
+  }
+  .banner .banner-container .left .down {
+    height: 21px;
+    line-height: 21px;
+    margin-top: 59px;
+  }
+  .banner .banner-container .left .down span {
+    font-size: 21px;
+  }
+  .banner .banner-container .left .down img {
+    width: 6px;
+    margin-left: 9px;
+  }
+  .banner .banner-container .left .code {
+    font-size: 21px;
+    margin: 16px 0 0 0;
+  }
+  .banner .banner-container .left .code li {
+    width: 138px;
+    margin-right: 39px;
+  }
+  .banner .banner-container .left .code li span {
+    margin-top: 12px;
+  }
+  .banner .banner-container .right {
+    width: 650px;
+    margin-left: -94px;
+  }
+  .banner .banner-container .right img {
+    height: 768px;
+  }
+  .banner .banner-container .right .iframe {
+    width: 192px;
+    height: 334px;
+    top: 187px;
+    left: 180px;
+  }
+  .banner .banner-container .mouse {
+    width: 17px;
+    height: 25px;
+    bottom: 50px;
+  }
+  .proIntro {
+    height: 485px;
+  }
+  .proIntro .intro-content {
+    width: 1000px;
+    height: 485px;
+  }
+  .proIntro .intro-content .title {
+    top: 60px;
+    left: 20px;
+    height: 28px;
+    line-height: 28px;
+  }
+  .proIntro .intro-content .title span:first-child {
+    font-size: 26px;
+    color: #333;
+    margin-left: 6px;
+  }
+  .proIntro .intro-content .title span:nth-child(2) {
+    font-size: 24px;
+    color: #666;
+  }
+  .proIntro .intro-content .title span:last-child {
+    font-size: 16px;
+    color: #666;
+  }
+  .proIntro .intro-content .content {
+    width: 570px;
+    top: 120px;
+    left: 20px;
+  }
+  .proIntro .intro-content .content p {
+    font-size: 14px;
+    line-height: 36px;
+    margin-bottom: 20px;
+  }
+  .proIntro .intro-content img {
+    width: 380px;
+    height: 370px;
+    top: 110px;
+    right: 20px;
+  }
+  .problem {
+    width: 100%;
+    height: 700px;
+  }
+  .problem .pro-content {
+    width: 1000px;
+  }
+  .problem .pro-content .title {
+    top: 60px;
+    left: 20px;
+    height: 28px;
+    line-height: 28px;
+  }
+  .problem .pro-content .title span:first-child {
+    font-size: 26px;
+    color: #333;
+    margin-left: 6px;
+  }
+  .problem .pro-content .title span:nth-child(2) {
+    font-size: 24px;
+    color: #666;
+  }
+  .problem .pro-content .title span:last-child {
+    font-size: 16px;
+    color: #666;
+  }
+  .problem .pro-content img {
+    width: 1000px;
+    top: 30px;
+  }
+  .application {
+    width: 100%;
+    height: 690px;
+  }
+  .application .app-content {
+    width: 1000px;
+  }
+  .application .app-content .title {
+    top: 60px;
+    left: 20px;
+    height: 28px;
+    line-height: 28px;
+  }
+  .application .app-content .title span:first-child {
+    font-size: 26px;
+    color: #fff;
+    margin-left: 6px;
+  }
+  .application .app-content .title span:nth-child(2) {
+    font-size: 24px;
+    color: #fff;
+  }
+  .application .app-content .title span:last-child {
+    font-size: 16px;
+    color: #fff;
+  }
+  .application .app-content .appli-row-one {
+    margin: 161px auto 0 auto;
+    width: 820px;
+    height: 150px;
+    font-size: 18px;
+  }
+  .application .app-content .appli-row-one li div {
+    height: 160px;
+  }
+  .application .app-content .appli-row-one li div img {
+    width: 160px;
+  }
+  .application .app-content .appli-row-one li p {
+    margin-top: 16px;
+  }
+  .application .app-content .appli-row-two {
+    margin: 115px auto;
+    width: 1000px;
+    height: 150px;
+    font-size: 18px;
+  }
+  .application .app-content .appli-row-two li div {
+    height: 160px;
+  }
+  .application .app-content .appli-row-two li div img {
+    width: 160px;
+  }
+  .application .app-content .appli-row-two li p {
+    margin-top: 16px;
+  }
+  .function {
+    height: 750px;
+  }
+  .function .func-content {
+    width: 1000px;
+  }
+  .function .func-content .title {
+    top: 60px;
+    left: 20px;
+    height: 28px;
+    line-height: 28px;
+  }
+  .function .func-content .title span:first-child {
+    font-size: 26px;
+    color: #333;
+    margin-left: 6px;
+  }
+  .function .func-content .title span:nth-child(2) {
+    font-size: 24px;
+    color: #666;
+  }
+  .function .func-content .title span:last-child {
+    font-size: 16px;
+    color: #666;
+  }
+  .function .func-content ul li {
+    width: 234px;
+    height: 320px;
+    margin-right: 14px;
+  }
+  .function .func-content ul li img {
+    width: 80px;
+    height: 80px;
+    margin: 23px auto 0 auto;
+  }
+  .function .func-content ul li span {
+    margin: 12px auto 10px auto;
+    font-size: 18px;
+  }
+  .function .func-content ul li p {
+    width: 200px;
+    font-size: 14px;
+  }
+  .function .func-content .func-group-one {
+    top: 110px;
+    width: 780px;
+  }
+  .function .func-content .func-group-two {
+    top: 442px;
+    width: 980px;
+  }
+  .coreTech {
+    width: 100%;
+    height: 140px;
+  }
+  .coreTech .core-content {
+    width: 1000px;
+  }
+  .coreTech .core-content .title {
+    top: 60px;
+    left: 20px;
+    height: 28px;
+    line-height: 28px;
+  }
+  .coreTech .core-content .title span:first-child {
+    font-size: 26px;
+    color: #333;
+    margin-left: 6px;
+  }
+  .coreTech .core-content .title span:nth-child(2) {
+    font-size: 24px;
+    color: #666;
+  }
+  .coreTech .core-content .title span:last-child {
+    font-size: 16px;
+    color: #666;
+  }
+  .imgGroup {
+    width: 100%;
+  }
+  .imgGroup ul li img {
+    width: 100%;
+  }
+  .imgGroup ul li .font {
+    width: 470px;
+    height: 107px;
+  }
+  .imgGroup ul li:first-child .font {
+    bottom: 30px;
+    right: 30px;
+  }
+  .imgGroup ul li:nth-child(2) .font {
+    bottom: 30px;
+    left: 30px;
+  }
+  .imgGroup ul li:nth-child(3) .font {
+    top: 30px;
+    right: 30px;
+  }
+  .imgGroup ul li:last-child .font {
+    top: 30px;
+    left: 30px;
+  }
+  .imgGroup ul li .font p:first-child {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  .imgGroup ul li .font p:last-child {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .contact {
+    height: 340px;
+  }
+  .contact .contact-content {
+    width: 1000px;
+  }
+  .contact .contact-content .title {
+    top: 60px;
+    left: 20px;
+    height: 28px;
+    line-height: 28px;
+  }
+  .contact .contact-content .title span:first-child {
+    font-size: 26px;
+    color: #fff;
+    margin-left: 6px;
+  }
+  .contact .contact-content .title span:nth-child(2) {
+    font-size: 24px;
+    color: #fff;
+  }
+  .contact .contact-content .title span:last-child {
+    font-size: 16px;
+    color: #fff;
+  }
+  .contact .contact-content .connection {
+    top: 123px;
+    left: 20px;
+    width: 500px;
+    font-size: 14px;
+  }
+  .contact .contact-content .connection .tel {
+    margin-bottom: 14px;
+  }
+  .contact .contact-content .connection .email {
+    margin-bottom: 14px;
+  }
+  .contact .contact-content .connection .address_big {
+    margin-bottom: 14px;
+  }
+  .contact .contact-content .connection .address .company {
+    display: inline-block;
+    width: 56px;
+    text-align: justify;
+    text-align-last: justify;
+  }
+  .contact .contact-content .publicNumber {
+    width: 216px;
+    height: 200px;
+    right: 10px;
+    top: 87px;
+  }
+  .contact .contact-content .publicNumber .public-code {
+    top: -160px;
+    left: -18px;
+    width: 150px;
+  }
+  .contact .contact-content .publicNumber ul {
+    height: 100px;
+  }
+  .contact .contact-content .publicNumber ul li img {
+    width: 49px;
+    height: 49px;
+  }
+  .contact .contact-content .publicNumber ul li span {
+    font-size: 14px;
+    margin-top: 16px;
+  }
+  .contact .contact-content .publicNumber p {
+    font-size: 14px;
+  }
+  .contact .contact-content .line {
+    width: 1000px;
+    height: 1px;
+    top: 289px;
+  }
+  .contact .contact-content .case {
+    top: 309px;
+    font-size: 12px;
+  }
+}
+/*>=1024的设备*/
+@media (min-width: 1024px) {
+  body {
+    font-size: 18px;
+  }
+  .header {
+    height: 64px;
+  }
+  .header .header-content {
+    width: 100%;
+  }
+  .header .header-content img {
+    width: 49px;
+    height: 43px;
+    margin-top: 10px;
+    margin-left: 24px;
+  }
+  .header .header-content .logoText {
+    margin-top: 18px;
+    margin-left: 10px;
+    font-size: 17px;
+  }
+  .header .header-content .logoText span:last-child {
+    margin-top: 10px;
+    font-size: 12px;
+  }
+  .header .header-content .nav {
+    font-size: 17px;
+  }
+  .header .header-content .nav li {
+    margin-right: 25px;
+    height: 61px;
+    line-height: 64px;
+  }
+  .header .header-content .nav li:first-child {
+    border-bottom: 3px solid #2297E1;
+  }
+  .header .header-content .nav li:last-child {
+    margin-right: 18px;
+  }
+  .banner {
+    height: 768px;
+  }
+  .banner .banner-container {
+    width: 1024px;
+  }
+  .banner .banner-container .left {
+    margin-left: 23px;
+  }
+  .banner .banner-container .left .yunce-title {
+    font-size: 52px;
+    margin-top: 185px;
+    width: 525px;
+  }
+  .banner .banner-container .left span:nth-child(2) {
+    font-size: 21px;
+    margin-top: 12px;
+  }
+  .banner .banner-container .left .yunce-func {
+    height: 23px;
+    line-height: 23px;
+    font-size: 24px;
+    margin: 38px 0 0 0;
+  }
+  .banner .banner-container .left .yunce-func li {
+    width: 150px;
+  }
+  .banner .banner-container .left .down {
+    height: 21px;
+    line-height: 21px;
+    margin-top: 59px;
+  }
+  .banner .banner-container .left .down span {
+    font-size: 21px;
+  }
+  .banner .banner-container .left .down img {
+    width: 6px;
+    margin-left: 9px;
+  }
+  .banner .banner-container .left .code {
+    font-size: 21px;
+    margin: 16px 0 0 0;
+  }
+  .banner .banner-container .left .code li {
+    width: 138px;
+    margin-right: 39px;
+  }
+  .banner .banner-container .left .code li span {
+    margin-top: 12px;
+  }
+  .banner .banner-container .right {
+    width: 650px;
+    margin-left: -94px;
+  }
+  .banner .banner-container .right img {
+    height: 768px;
+  }
+  .banner .banner-container .right .iframe {
+    width: 192px;
+    height: 334px;
+    top: 187px;
+    left: 180px;
+  }
+  .banner .banner-container .mouse {
+    width: 17px;
+    height: 25px;
+    bottom: 50px;
+  }
+  .proIntro {
+    height: 485px;
+  }
+  .proIntro .intro-content {
+    width: 1000px;
+    height: 485px;
+  }
+  .proIntro .intro-content .title {
+    top: 60px;
+    left: 20px;
+    height: 28px;
+    line-height: 28px;
+  }
+  .proIntro .intro-content .title span:first-child {
+    font-size: 26px;
+    color: #333;
+    margin-left: 6px;
+  }
+  .proIntro .intro-content .title span:nth-child(2) {
+    font-size: 24px;
+    color: #666;
+  }
+  .proIntro .intro-content .title span:last-child {
+    font-size: 16px;
+    color: #666;
+  }
+  .proIntro .intro-content .content {
+    width: 570px;
+    top: 120px;
+    left: 20px;
+  }
+  .proIntro .intro-content .content p {
+    font-size: 14px;
+    line-height: 36px;
+    margin-bottom: 20px;
+  }
+  .proIntro .intro-content img {
+    width: 380px;
+    height: 370px;
+    top: 110px;
+    right: 20px;
+  }
+  .problem {
+    width: 100%;
+    height: 700px;
+  }
+  .problem .pro-content {
+    width: 1000px;
+  }
+  .problem .pro-content .title {
+    top: 60px;
+    left: 20px;
+    height: 28px;
+    line-height: 28px;
+  }
+  .problem .pro-content .title span:first-child {
+    font-size: 26px;
+    color: #333;
+    margin-left: 6px;
+  }
+  .problem .pro-content .title span:nth-child(2) {
+    font-size: 24px;
+    color: #666;
+  }
+  .problem .pro-content .title span:last-child {
+    font-size: 16px;
+    color: #666;
+  }
+  .problem .pro-content img {
+    width: 1000px;
+    top: 30px;
+  }
+  .application {
+    width: 100%;
+    height: 690px;
+  }
+  .application .app-content {
+    width: 1000px;
+  }
+  .application .app-content .title {
+    top: 60px;
+    left: 20px;
+    height: 28px;
+    line-height: 28px;
+  }
+  .application .app-content .title span:first-child {
+    font-size: 26px;
+    color: #fff;
+    margin-left: 6px;
+  }
+  .application .app-content .title span:nth-child(2) {
+    font-size: 24px;
+    color: #fff;
+  }
+  .application .app-content .title span:last-child {
+    font-size: 16px;
+    color: #fff;
+  }
+  .application .app-content .appli-row-one {
+    margin: 161px auto 0 auto;
+    width: 820px;
+    height: 150px;
+    font-size: 18px;
+  }
+  .application .app-content .appli-row-one li div {
+    height: 160px;
+  }
+  .application .app-content .appli-row-one li div img {
+    width: 160px;
+  }
+  .application .app-content .appli-row-one li p {
+    margin-top: 16px;
+  }
+  .application .app-content .appli-row-two {
+    margin: 115px auto;
+    width: 1000px;
+    height: 150px;
+    font-size: 18px;
+  }
+  .application .app-content .appli-row-two li div {
+    height: 160px;
+  }
+  .application .app-content .appli-row-two li div img {
+    width: 160px;
+  }
+  .application .app-content .appli-row-two li p {
+    margin-top: 16px;
+  }
+  .function {
+    height: 750px;
+  }
+  .function .func-content {
+    width: 1000px;
+  }
+  .function .func-content .title {
+    top: 60px;
+    left: 20px;
+    height: 28px;
+    line-height: 28px;
+  }
+  .function .func-content .title span:first-child {
+    font-size: 26px;
+    color: #333;
+    margin-left: 6px;
+  }
+  .function .func-content .title span:nth-child(2) {
+    font-size: 24px;
+    color: #666;
+  }
+  .function .func-content .title span:last-child {
+    font-size: 16px;
+    color: #666;
+  }
+  .function .func-content ul li {
+    width: 234px;
+    height: 320px;
+    margin-right: 14px;
+  }
+  .function .func-content ul li img {
+    width: 80px;
+    height: 80px;
+    margin: 23px auto 0 auto;
+  }
+  .function .func-content ul li span {
+    margin: 12px auto 10px auto;
+    font-size: 18px;
+  }
+  .function .func-content ul li p {
+    width: 200px;
+    font-size: 14px;
+  }
+  .function .func-content .func-group-one {
+    top: 110px;
+    width: 780px;
+  }
+  .function .func-content .func-group-two {
+    top: 442px;
+    width: 980px;
+  }
+  .coreTech {
+    width: 100%;
+    height: 140px;
+  }
+  .coreTech .core-content {
+    width: 1000px;
+  }
+  .coreTech .core-content .title {
+    top: 60px;
+    left: 20px;
+    height: 28px;
+    line-height: 28px;
+  }
+  .coreTech .core-content .title span:first-child {
+    font-size: 26px;
+    color: #333;
+    margin-left: 6px;
+  }
+  .coreTech .core-content .title span:nth-child(2) {
+    font-size: 24px;
+    color: #666;
+  }
+  .coreTech .core-content .title span:last-child {
+    font-size: 16px;
+    color: #666;
+  }
+  .imgGroup {
+    width: 100%;
+  }
+  .imgGroup ul li img {
+    width: 100%;
+  }
+  .imgGroup ul li .font {
+    width: 470px;
+    height: 107px;
+  }
+  .imgGroup ul li:first-child .font {
+    bottom: 30px;
+    right: 30px;
+  }
+  .imgGroup ul li:nth-child(2) .font {
+    bottom: 30px;
+    left: 30px;
+  }
+  .imgGroup ul li:nth-child(3) .font {
+    top: 30px;
+    right: 30px;
+  }
+  .imgGroup ul li:last-child .font {
+    top: 30px;
+    left: 30px;
+  }
+  .imgGroup ul li .font p:first-child {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  .imgGroup ul li .font p:last-child {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .contact {
+    height: 340px;
+  }
+  .contact .contact-content {
+    width: 1000px;
+  }
+  .contact .contact-content .title {
+    top: 60px;
+    left: 20px;
+    height: 28px;
+    line-height: 28px;
+  }
+  .contact .contact-content .title span:first-child {
+    font-size: 26px;
+    color: #fff;
+    margin-left: 6px;
+  }
+  .contact .contact-content .title span:nth-child(2) {
+    font-size: 24px;
+    color: #fff;
+  }
+  .contact .contact-content .title span:last-child {
+    font-size: 16px;
+    color: #fff;
+  }
+  .contact .contact-content .connection {
+    top: 123px;
+    left: 20px;
+    width: 500px;
+    font-size: 14px;
+  }
+  .contact .contact-content .connection .tel {
+    margin-bottom: 14px;
+  }
+  .contact .contact-content .connection .email {
+    margin-bottom: 14px;
+  }
+  .contact .contact-content .connection .address_big {
+    margin-bottom: 14px;
+  }
+  .contact .contact-content .connection .address .company {
+    display: inline-block;
+    width: 56px;
+    text-align: justify;
+    text-align-last: justify;
+  }
+  .contact .contact-content .publicNumber {
+    width: 216px;
+    height: 200px;
+    right: 10px;
+    top: 87px;
+  }
+  .contact .contact-content .publicNumber .public-code {
+    top: -160px;
+    left: -18px;
+    width: 150px;
+  }
+  .contact .contact-content .publicNumber ul {
+    height: 100px;
+  }
+  .contact .contact-content .publicNumber ul li img {
+    width: 49px;
+    height: 49px;
+  }
+  .contact .contact-content .publicNumber ul li span {
+    font-size: 14px;
+    margin-top: 16px;
+  }
+  .contact .contact-content .publicNumber p {
+    font-size: 14px;
+  }
+  .contact .contact-content .line {
+    width: 1000px;
+    height: 1px;
+    top: 289px;
+  }
+  .contact .contact-content .case {
+    top: 309px;
+    font-size: 12px;
+  }
+}
+/*>=1366的设备*/
+@media (min-width: 1366px) {
+  body {
+    font-size: 24px;
+  }
+  .header {
+    height: 74px;
+  }
+  .header .header-content {
+    width: 1200px;
+  }
+  .header .header-content img {
+    width: 57px;
+    height: 50px;
+    margin-top: 11px;
+  }
+  .header .header-content .logoText {
+    margin-top: 24px;
+    margin-left: 12px;
+    font-size: 20px;
+  }
+  .header .header-content .logoText span:last-child {
+    margin-top: 12px;
+    font-size: 14px;
+  }
+  .header .header-content .nav {
+    font-size: 20px;
+  }
+  .header .header-content .nav li {
+    margin-right: 50px;
+    height: 70px;
+    line-height: 74px;
+  }
+  .header .header-content .nav li:first-child {
+    border-bottom: 4px solid #2297E1;
+  }
+  .banner {
+    height: 1006px;
+  }
+  .banner .banner-container {
+    width: 1200px;
+  }
+  .banner .banner-container .left .yunce-title {
+    font-size: 60px;
+    margin-top: 245px;
+    width: 647px;
+  }
+  .banner .banner-container .left span:nth-child(2) {
+    font-size: 24px;
+    margin-top: 16px;
+  }
+  .banner .banner-container .left .yunce-func {
+    height: 28px;
+    line-height: 28px;
+    font-size: 28px;
+    margin: 42px 0 0 0;
+  }
+  .banner .banner-container .left .yunce-func li {
+    width: 174px;
+  }
+  .banner .banner-container .left .down {
+    height: 24px;
+    line-height: 24px;
+    margin-top: 68px;
+  }
+  .banner .banner-container .left .down span {
+    font-size: 24px;
+  }
+  .banner .banner-container .left .down img {
+    width: 7px;
+    margin-left: 10px;
+  }
+  .banner .banner-container .left .code {
+    font-size: 24px;
+    margin: 18px 0 0 0;
+  }
+  .banner .banner-container .left .code li {
+    width: 160px;
+    margin-right: 46px;
+  }
+  .banner .banner-container .left .code li span {
+    margin-top: 19px;
+  }
+  .banner .banner-container .right {
+    width: 670px;
+    margin-top: 38px;
+    margin-right: -83px;
+  }
+  .banner .banner-container .right img {
+    height: 906px;
+  }
+  .banner .banner-container .right .iframe {
+    width: 221px;
+    height: 394px;
+    top: 221px;
+    left: 214px;
+  }
+  .banner .banner-container .mouse {
+    width: 20px;
+    height: 29px;
+    bottom: 10px;
+  }
+  .proIntro {
+    width: 100%;
+    height: 640px;
+  }
+  .proIntro .intro-content {
+    top: 50px;
+    width: 1458px;
+    height: 540px;
+  }
+  .proIntro .intro-content .title {
+    top: 66px;
+    left: 129px;
+    height: 35px;
+    line-height: 35px;
+  }
+  .proIntro .intro-content .title span:first-child {
+    font-size: 30px;
+    color: #333;
+    margin-left: 8px;
+  }
+  .proIntro .intro-content .title span:nth-child(2) {
+    font-size: 30px;
+    color: #666;
+  }
+  .proIntro .intro-content .title span:last-child {
+    font-size: 18px;
+    color: #666;
+  }
+  .proIntro .intro-content .content {
+    width: 701px;
+    top: 142px;
+    left: 127px;
+  }
+  .proIntro .intro-content .content p {
+    font-size: 16px;
+    line-height: 36px;
+    margin-bottom: 40px;
+  }
+  .proIntro .intro-content img {
+    width: 479px;
+    height: 474px;
+    top: 47px;
+    right: 110px;
+  }
+  .problem {
+    height: 858px;
+  }
+  .problem .pro-content {
+    top: 0;
+    width: 1200px;
+  }
+  .problem .pro-content .title {
+    top: 50px;
+    left: 0;
+    height: 35px;
+    line-height: 35px;
+  }
+  .problem .pro-content .title span:first-child {
+    font-size: 30px;
+    color: #333;
+    margin-left: 8px;
+  }
+  .problem .pro-content .title span:nth-child(2) {
+    font-size: 30px;
+    color: #666;
+  }
+  .problem .pro-content .title span:last-child {
+    font-size: 18px;
+    color: #666;
+  }
+  .problem .pro-content img {
+    width: 1195px;
+    top: 45px;
+  }
+  .application {
+    height: 816px;
+  }
+  .application .app-content {
+    width: 1200px;
+  }
+  .application .app-content .title {
+    position: absolute;
+    top: 66px;
+    left: 0;
+    height: 35px;
+    line-height: 35px;
+    border-left: 5px solid #fff;
+    color: #fff;
+  }
+  .application .app-content .title span:first-child {
+    font-size: 30px;
+    font-family: 'MicrosoftYaHei';
+    margin-left: 8px;
+  }
+  .application .app-content .title span:nth-child(2) {
+    font-size: 30px;
+    font-family: 'TimesNewRomanPSMT';
+  }
+  .application .app-content .title span:last-child {
+    font-size: 18px;
+    font-family: 'TimesNewRomanPSMT';
+  }
+  .application .app-content .appli-row-one {
+    margin: 161px auto 0 auto;
+    width: 1012px;
+    height: 150px;
+    font-size: 24px;
+  }
+  .application .app-content .appli-row-one li div {
+    height: 193px;
+  }
+  .application .app-content .appli-row-one li div img {
+    width: 193px;
+  }
+  .application .app-content .appli-row-one li p {
+    margin-top: 23px;
+  }
+  .application .app-content .appli-row-two {
+    margin: 150px auto;
+    width: 1200px;
+    height: 150px;
+    font-size: 24px;
+  }
+  .application .app-content .appli-row-two li div {
+    height: 193px;
+  }
+  .application .app-content .appli-row-two li div img {
+    width: 193px;
+  }
+  .application .app-content .appli-row-two li p {
+    margin-top: 23px;
+  }
+  .function {
+    height: 1010px;
+  }
+  .function .func-content {
+    width: 1200px;
+  }
+  .function .func-content .title {
+    top: 66px;
+    left: 0;
+    height: 35px;
+    line-height: 35px;
+  }
+  .function .func-content .title span:first-child {
+    font-size: 30px;
+    margin-left: 8px;
+    color: #333;
+  }
+  .function .func-content .title span:nth-child(2) {
+    font-size: 30px;
+    color: #666;
+  }
+  .function .func-content .title span:last-child {
+    font-size: 18px;
+    color: #666;
+  }
+  .function .func-content ul li {
+    width: 300px;
+    height: 400px;
+    margin-right: 12px;
+  }
+  .function .func-content ul li img {
+    width: 110px;
+    height: 110px;
+    margin: 20px auto 0 auto;
+  }
+  .function .func-content ul li span {
+    margin: 26px auto 15px auto;
+    font-size: 24px;
+  }
+  .function .func-content ul li p {
+    width: 260px;
+    font-size: 16px;
+  }
+  .function .func-content .func-group-one {
+    top: 146px;
+    width: 924px;
+  }
+  .function .func-content .func-group-two {
+    top: 558px;
+    width: 1236px;
+  }
+  .coreTech {
+    height: 140px;
+  }
+  .coreTech .core-content {
+    width: 1200px;
+  }
+  .coreTech .core-content .title {
+    top: 66px;
+    left: 0;
+    height: 35px;
+    line-height: 35px;
+  }
+  .coreTech .core-content .title span:first-child {
+    font-size: 30px;
+    margin-left: 8px;
+    color: #333;
+  }
+  .coreTech .core-content .title span:nth-child(2) {
+    font-size: 30px;
+    color: #666;
+  }
+  .coreTech .core-content .title span:last-child {
+    font-size: 18px;
+    color: #666;
+  }
+  .imgGroup ul li .font {
+    width: 570px;
+    height: 150px;
+  }
+  .imgGroup ul li:first-child .font {
+    bottom: 50px;
+    right: 50px;
+  }
+  .imgGroup ul li:nth-child(2) .font {
+    bottom: 50px;
+    left: 50px;
+  }
+  .imgGroup ul li:nth-child(3) .font {
+    top: 50px;
+    right: 50px;
+  }
+  .imgGroup ul li:last-child .font {
+    top: 50px;
+    left: 50px;
+  }
+  .imgGroup ul li .font p:first-child {
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
+  .imgGroup ul li .font p:last-child {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .contact {
+    height: 379px;
+  }
+  .contact .contact-content {
+    width: 1200px;
+  }
+  .contact .contact-content .title {
+    top: 60px;
+    left: 0;
+    height: 35px;
+    line-height: 35px;
+  }
+  .contact .contact-content .title span:first-child {
+    font-size: 30px;
+    margin-left: 8px;
+  }
+  .contact .contact-content .title span:nth-child(2) {
+    font-size: 30px;
+  }
+  .contact .contact-content .title span:last-child {
+    font-size: 18px;
+  }
+  .contact .contact-content .connection {
+    top: 123px;
+    left: 0;
+    font-size: 16px;
+  }
+  .contact .contact-content .connection .tel {
+    margin-bottom: 18px;
+  }
+  .contact .contact-content .connection .email {
+    margin-bottom: 18px;
+  }
+  .contact .contact-content .connection .address_big {
+    margin-bottom: 18px;
+  }
+  .contact .contact-content .connection .address .company {
+    display: inline-block;
+    width: 64px;
+    text-align: justify;
+    text-align-last: justify;
+  }
+  .contact .contact-content .publicNumber {
+    right: 10px;
+    top: 121px;
+  }
+  .contact .contact-content .publicNumber .public-code {
+    top: -200px;
+    left: -52px;
+    width: 190px;
+  }
+  .contact .contact-content .publicNumber ul li span {
+    font-size: 16px;
+    margin-top: 16px;
+  }
+  .contact .contact-content .publicNumber p {
+    font-size: 16px;
+  }
+  .contact .contact-content .line {
+    width: 1200px;
+    top: 306px;
+  }
+  .contact .contact-content .case {
+    top: 332px;
+  }
+}
